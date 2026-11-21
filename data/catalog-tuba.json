@@ -1,0 +1,1367 @@
+{
+  "cats": [
+    {
+      "id": "overview",
+      "name": "系统概览",
+      "folder": null
+    },
+    {
+      "id": "cpu",
+      "name": "处理器工具",
+      "folder": "处理器工具",
+      "icon": "cpu",
+      "desc": "检测、跑分、烤机、降压锁频"
+    },
+    {
+      "id": "memory",
+      "name": "内存工具",
+      "folder": "内存工具",
+      "icon": "memory",
+      "desc": "稳定性测试、颗粒识别、时序调整"
+    },
+    {
+      "id": "gpu",
+      "name": "显卡工具",
+      "folder": "显卡工具",
+      "icon": "gpu",
+      "desc": "显卡信息、驱动清理、负载压测"
+    },
+    {
+      "id": "disk",
+      "name": "硬盘工具",
+      "folder": "硬盘工具",
+      "icon": "disk",
+      "desc": "测速、健康、分区、数据恢复"
+    },
+    {
+      "id": "screen",
+      "name": "显示器工具",
+      "folder": "显示器工具",
+      "icon": "screen",
+      "desc": "坏点漏光、色域、响应测试"
+    },
+    {
+      "id": "bench",
+      "name": "综合检测",
+      "folder": "综合检测",
+      "icon": "scan",
+      "desc": "整机信息、传感器、硬件读写"
+    },
+    {
+      "id": "periph",
+      "name": "外设工具",
+      "folder": "外设工具",
+      "icon": "mouse",
+      "desc": "键鼠测试、回报率、按键重映射"
+    },
+    {
+      "id": "stress",
+      "name": "烤机压测",
+      "folder": "烤鸡工具",
+      "icon": "fire",
+      "desc": "一键满载，验证散热与稳定性"
+    },
+    {
+      "id": "game",
+      "name": "游戏工具",
+      "folder": "游戏工具",
+      "icon": "game",
+      "desc": "平台下载、加速器、存档、修改器"
+    },
+    {
+      "id": "other",
+      "name": "其他工具",
+      "folder": "其他工具",
+      "icon": "box",
+      "desc": "系统维护、启动盘、进程分析"
+    },
+    {
+      "id": "system",
+      "name": "装机必备",
+      "folder": null,
+      "icon": "user",
+      "desc": "你自备的安装包与常用软件"
+    },
+    {
+      "id": "perf",
+      "name": "性能调优",
+      "folder": null,
+      "icon": "bolt",
+      "desc": "驱动、超频、悬浮监控"
+    },
+    {
+      "id": "media",
+      "name": "影音工具",
+      "folder": null,
+      "icon": "play",
+      "desc": "剪辑、语音、资源解包"
+    }
+  ],
+  "tools": [
+    {
+      "id": "p1",
+      "name": "CPU-Z (64位)",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\CPUZ\\cpuz_x64.exe",
+      "available": true,
+      "desc": "CPU/主板/内存参数与实时频率，最通用的验机工具",
+      "admin": false
+    },
+    {
+      "id": "p2",
+      "name": "CPU-Z (32位)",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\CPUZ\\cpuz_x32.exe",
+      "available": true,
+      "desc": "CPU/主板/内存参数与实时频率，最通用的验机工具",
+      "admin": false
+    },
+    {
+      "id": "p3",
+      "name": "LinX",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\LinX\\LinX.exe",
+      "available": true,
+      "desc": "Intel Linpack 压力测试，考验 CPU 与供电稳定性",
+      "admin": false
+    },
+    {
+      "id": "p4",
+      "name": "Prime95",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\Prime95\\prime95.exe",
+      "available": true,
+      "desc": "经典 FPU 满载测试，跑 Small FFTs 查稳定性",
+      "admin": false
+    },
+    {
+      "id": "p5",
+      "name": "P95一键烤机",
+      "category": "cpu",
+      "kind": "script",
+      "rel": "处理器工具\\Prime95\\start.bat",
+      "available": true,
+      "desc": "预设参数直接开跑，不用手动配",
+      "admin": false
+    },
+    {
+      "id": "p6",
+      "name": "SuperPI",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\superpi\\Superpi.exe",
+      "available": true,
+      "desc": "单核圆周率计算，看单线程性能与延迟",
+      "admin": false
+    },
+    {
+      "id": "p7",
+      "name": "wPrime",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\wPrime\\wPrime.exe",
+      "available": true,
+      "desc": "多线程质数计算，老牌多核跑分",
+      "admin": false
+    },
+    {
+      "id": "p8",
+      "name": "Fritz Chess",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\XIANGQI\\xiangqi.exe",
+      "available": true,
+      "desc": "国际象棋步法计算，多核性能参考",
+      "admin": false
+    },
+    {
+      "id": "p9",
+      "name": "CPU天梯图",
+      "category": "cpu",
+      "kind": "image",
+      "rel": "其他工具\\天梯图\\CPU天梯图.jpg",
+      "available": true,
+      "desc": "CPU 性能排行图（图片）",
+      "admin": false
+    },
+    {
+      "id": "p10",
+      "name": "cpu burner",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark\\cpuburner.exe",
+      "available": true,
+      "desc": "轻量 CPU 满载，常与 FurMark 同时开",
+      "admin": false
+    },
+    {
+      "id": "p11",
+      "name": "Core Temp 64",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\CoreTemp\\Core Temp x64.exe",
+      "available": true,
+      "desc": "每核心温度与功耗，支持过热保护",
+      "admin": false
+    },
+    {
+      "id": "p12",
+      "name": "Core Temp 32",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\CoreTemp\\Core Temp x86.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p13",
+      "name": "AIDA64",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "综合检测\\AIDA64\\aida64.exe",
+      "available": true,
+      "desc": "整机信息 + 传感器 + 内存带宽 + 稳定性测试",
+      "admin": false
+    },
+    {
+      "id": "p14",
+      "name": "ThrottleStop",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\ThrottleStop\\ThrottleStop.exe",
+      "available": true,
+      "desc": "降压/锁频/关闭降频，笔记本性能释放必备",
+      "admin": false
+    },
+    {
+      "id": "p15",
+      "name": "核间延迟测试",
+      "category": "cpu",
+      "kind": "exe",
+      "rel": "处理器工具\\C2CLatency\\C2CLatency.exe",
+      "available": true,
+      "desc": "测核心到核心的通信延迟，AMD 调内存常用",
+      "admin": false
+    },
+    {
+      "id": "p16",
+      "name": "流量卡售后",
+      "category": "cpu",
+      "kind": "script",
+      "rel": "常用工具\\免费领流量卡\\Start.bat",
+      "available": true,
+      "desc": "图吧附带的流量卡售后入口（网页）",
+      "admin": false
+    },
+    {
+      "id": "p17",
+      "name": "新手指引",
+      "category": "cpu",
+      "kind": "info",
+      "rel": null,
+      "desc": "当前版本未附带此工具",
+      "available": false
+    },
+    {
+      "id": "p18",
+      "name": "AIDA64",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\AIDA64\\aida64.exe",
+      "available": true,
+      "desc": "整机信息 + 传感器 + 内存带宽 + 稳定性测试",
+      "admin": false
+    },
+    {
+      "id": "p19",
+      "name": "MemTest",
+      "category": "memory",
+      "kind": "exe",
+      "rel": "内存工具\\memtest\\memtest.exe",
+      "available": true,
+      "desc": "内存颗粒级读写测试，可测出坏位",
+      "admin": false
+    },
+    {
+      "id": "p20",
+      "name": "MemTest64",
+      "category": "memory",
+      "kind": "exe",
+      "rel": "内存工具\\memtest64\\MemTest64.exe",
+      "available": true,
+      "desc": "Windows 下跑的内存稳定性测试",
+      "admin": false
+    },
+    {
+      "id": "p21",
+      "name": "魔方内存盘",
+      "category": "memory",
+      "kind": "exe",
+      "rel": "内存工具\\魔方内存盘\\ramdisk.exe",
+      "available": true,
+      "desc": "把内存虚拟成磁盘，读写极快、断电即失",
+      "admin": false
+    },
+    {
+      "id": "p22",
+      "name": "Thaiphoon",
+      "category": "memory",
+      "kind": "exe",
+      "rel": "内存工具\\Thaiphoon\\Thaiphoon.exe",
+      "available": true,
+      "desc": "读取内存 SPD，识别颗粒厂家与型号",
+      "admin": false
+    },
+    {
+      "id": "p23",
+      "name": "MemTest pro",
+      "category": "memory",
+      "kind": "exe",
+      "rel": "内存工具\\memtestpro\\memtestpro.exe",
+      "available": true,
+      "desc": "多开实例压满全部内存，超频验证常用",
+      "admin": false
+    },
+    {
+      "id": "p24",
+      "name": "TM5",
+      "category": "memory",
+      "kind": "exe",
+      "rel": "内存工具\\tm5\\TM5.exe",
+      "available": true,
+      "desc": "TestMem5，配 anta777 配置查内存超频稳定性",
+      "admin": false
+    },
+    {
+      "id": "p26",
+      "name": "GPU-Z",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "显卡工具\\GPUZ\\GPU-Z.exe",
+      "available": true,
+      "desc": "显卡型号、BIOS、传感器、带宽检测",
+      "admin": false
+    },
+    {
+      "id": "p27",
+      "name": "一键烤显卡",
+      "category": "gpu",
+      "kind": "script",
+      "rel": "烤鸡工具\\FurMark\\start.bat",
+      "available": true,
+      "desc": "FurMark 预设直接满载显卡",
+      "admin": false
+    },
+    {
+      "id": "p28",
+      "name": "一键烤存",
+      "category": "gpu",
+      "kind": "script",
+      "rel": "烤鸡工具\\FurMark\\一键烤显存.bat",
+      "available": true,
+      "desc": "显存专项压测",
+      "admin": false
+    },
+    {
+      "id": "p29",
+      "name": "FurMark",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark\\FurMark.exe",
+      "available": true,
+      "desc": "甜甜圈满载烤机，看温度墙与降频",
+      "admin": false
+    },
+    {
+      "id": "p30",
+      "name": "FurMark2",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark_win64\\FurMark_GUI.exe",
+      "available": true,
+      "desc": "新版 FurMark，支持 Vulkan/OpenGL 基准",
+      "admin": false
+    },
+    {
+      "id": "p31",
+      "name": "显存测试",
+      "category": "gpu",
+      "kind": "script",
+      "rel": "烤鸡工具\\FurMark\\gpushark.bat",
+      "available": true,
+      "desc": "显存位宽/错误检测",
+      "admin": false
+    },
+    {
+      "id": "p32",
+      "name": "GpuTest",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "显卡工具\\GpuTest_Windows x64\\GpuTest_GUI.exe",
+      "available": true,
+      "desc": "跨平台 GPU 基准与压力测试",
+      "admin": false
+    },
+    {
+      "id": "p33",
+      "name": "显卡天梯图",
+      "category": "gpu",
+      "kind": "image",
+      "rel": "其他工具\\天梯图\\显卡天梯图.jpg",
+      "available": true,
+      "desc": "显卡性能排行图（图片）",
+      "admin": false
+    },
+    {
+      "id": "p34",
+      "name": "DXVAChecker",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "显卡工具\\dxvachecker\\DXVAChecker.exe",
+      "available": true,
+      "desc": "检查显卡硬件解码/编码支持",
+      "admin": false
+    },
+    {
+      "id": "p35",
+      "name": "nvidiaInspector",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "显卡工具\\nvidiaInspector\\nvidiaInspector.exe",
+      "available": true,
+      "desc": "NVIDIA 驱动底层参数读取与修改",
+      "admin": false
+    },
+    {
+      "id": "p36",
+      "name": "Profile Insp.",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "显卡工具\\nvidiaProfileInspector\\nvidiaProfileInspector.exe",
+      "available": true,
+      "desc": "按游戏配置驱动参数（DLSS/垂直同步/锐化）",
+      "admin": false
+    },
+    {
+      "id": "p37",
+      "name": "DDU",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "显卡工具\\DDU\\Display Driver Uninstaller.exe",
+      "available": true,
+      "desc": "显卡驱动彻底清除，换卡/花屏排查必备",
+      "admin": false
+    },
+    {
+      "id": "p38",
+      "name": "gpushark",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark\\gpushark.exe",
+      "available": true,
+      "desc": "显存快速扫描",
+      "admin": false
+    },
+    {
+      "id": "p39",
+      "name": "gpushark2.0",
+      "category": "gpu",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark_win64\\_fm2-gui.exe",
+      "available": true,
+      "desc": "显存扫描新版",
+      "admin": false
+    },
+    {
+      "id": "p40",
+      "name": "游戏加加",
+      "category": "gpu",
+      "kind": "script",
+      "rel": "其他工具\\游戏加加\\start.bat",
+      "available": true,
+      "desc": "游戏内帧数/温度/占用悬浮窗",
+      "admin": false
+    },
+    {
+      "id": "p41",
+      "name": "Nvidia驱动",
+      "category": "gpu",
+      "kind": "script",
+      "rel": "显卡工具\\Nvidia显卡驱动下载\\Start.bat",
+      "available": true,
+      "desc": "跳转 NVIDIA 驱动下载页",
+      "admin": false
+    },
+    {
+      "id": "p42",
+      "name": "AMD驱动",
+      "category": "gpu",
+      "kind": "script",
+      "rel": "显卡工具\\AMD显卡驱动下载\\Start.bat",
+      "available": true,
+      "desc": "跳转 AMD 驱动下载页",
+      "admin": false
+    },
+    {
+      "id": "p43",
+      "name": "AS SSD",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\ASSSDBenchmark\\ASSSDBenchmark.exe",
+      "available": true,
+      "desc": "固态硬盘跑分，附带是否 4K 对齐判断",
+      "admin": false
+    },
+    {
+      "id": "p44",
+      "name": "DiskInfo 64",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\CrystalDiskInfo\\DiskInfo64S.exe",
+      "available": true,
+      "desc": "硬盘健康度、通电时间、温度（S.M.A.R.T.）",
+      "admin": false
+    },
+    {
+      "id": "p45",
+      "name": "DiskInfo 32",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\CrystalDiskInfo\\DiskInfo32S.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p46",
+      "name": "DiskMark 64",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\CrystalDiskMark\\DiskMark64S.exe",
+      "available": true,
+      "desc": "顺序/随机读写测速",
+      "admin": false
+    },
+    {
+      "id": "p47",
+      "name": "DiskMark 32",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\CrystalDiskMark\\DiskMark64.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p48",
+      "name": "HDTune",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\HDTune\\HDTune.exe",
+      "available": true,
+      "desc": "硬盘基准、错误扫描、健康状态",
+      "admin": false
+    },
+    {
+      "id": "p49",
+      "name": "ATTO",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\ATTODISKBENCHMARK\\ATTO 磁盘基准测试.exe",
+      "available": true,
+      "desc": "不同块大小的读写曲线，看主控策略",
+      "admin": false
+    },
+    {
+      "id": "p50",
+      "name": "TxBENCH",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\TxBENCH\\TxBENCH.exe",
+      "available": true,
+      "desc": "日系测速工具，支持自定义队列深度",
+      "admin": false
+    },
+    {
+      "id": "p51",
+      "name": "Defraggler",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\Defraggler\\Defraggler.exe",
+      "available": true,
+      "desc": "磁盘碎片整理与单文件碎片查看",
+      "admin": false
+    },
+    {
+      "id": "p52",
+      "name": "DiskGenius",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\DiskGenius\\DiskGenius.exe",
+      "available": true,
+      "desc": "分区管理、丢失分区恢复、文件恢复",
+      "admin": false
+    },
+    {
+      "id": "p53",
+      "name": "MyDiskTest",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\mydisktest\\MyDiskTest_v298.exe",
+      "available": true,
+      "desc": "U 盘/存储卡扩容与坏块检测",
+      "admin": false
+    },
+    {
+      "id": "p54",
+      "name": "魔方数据恢复",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\魔方数据恢复\\魔方数据恢复.exe",
+      "available": true,
+      "desc": "误删文件恢复",
+      "admin": false
+    },
+    {
+      "id": "p55",
+      "name": "FINALDATA",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\finaldata\\FINALDATA.exe",
+      "available": true,
+      "desc": "老牌数据恢复，支持深度扫描",
+      "admin": false
+    },
+    {
+      "id": "p56",
+      "name": "FdWizard",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\finaldata\\FdWizard.exe",
+      "available": true,
+      "desc": "FINALDATA 向导式恢复",
+      "admin": false
+    },
+    {
+      "id": "p57",
+      "name": "LLFTOOL",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\LLFTOOL\\LLFTOOL.exe",
+      "available": true,
+      "desc": "低级格式化，慎用",
+      "admin": false
+    },
+    {
+      "id": "p58",
+      "name": "h2testw",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\H2testw\\h2testw_1.4.exe",
+      "available": true,
+      "desc": "U 盘真实容量校验，专治扩容盘",
+      "admin": false
+    },
+    {
+      "id": "p59",
+      "name": "urwtest",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\URWTEST\\urwtest_v18.exe",
+      "available": true,
+      "desc": "U 盘读写速度与容量校验",
+      "admin": false
+    },
+    {
+      "id": "p60",
+      "name": "windirstat",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\windirstat\\windirstat.exe",
+      "available": true,
+      "desc": "磁盘空间占用树状图",
+      "admin": false
+    },
+    {
+      "id": "p61",
+      "name": "SpaceSniffer",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\SpaceSniffer\\SpaceSniffer.exe",
+      "available": true,
+      "desc": "方块式空间占用可视化",
+      "admin": false
+    },
+    {
+      "id": "p62",
+      "name": "WizTree",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\WizTree\\WizTree.exe",
+      "available": true,
+      "desc": "直接读 MFT，秒出空间占用（最快）",
+      "admin": false
+    },
+    {
+      "id": "p63",
+      "name": "SSDZ",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\SSDZ\\SSDZ.exe",
+      "available": true,
+      "desc": "固态硬盘信息与颗粒识别",
+      "admin": false
+    },
+    {
+      "id": "p64",
+      "name": "Flash ID",
+      "category": "disk",
+      "kind": "info",
+      "rel": null,
+      "desc": "闪存颗粒识别（部分主控）",
+      "available": false
+    },
+    {
+      "id": "p66",
+      "name": "坏点漏光测试",
+      "category": "screen",
+      "kind": "script",
+      "rel": "显示器工具\\UFO测试\\Start.bat",
+      "available": true,
+      "desc": "全屏纯色检查亮点、暗点、漏光",
+      "admin": false
+    },
+    {
+      "id": "p67",
+      "name": "色域检测",
+      "category": "screen",
+      "kind": "exe",
+      "rel": "显示器工具\\色域检测\\monitorinfo.exe",
+      "available": true,
+      "desc": "读取面板型号与色域覆盖",
+      "admin": false
+    },
+    {
+      "id": "p68",
+      "name": "在线屏测",
+      "category": "screen",
+      "kind": "script",
+      "rel": "显示器工具\\在线屏幕测试\\在线屏幕测试.bat",
+      "available": true,
+      "desc": "浏览器端屏幕测试页",
+      "admin": false
+    },
+    {
+      "id": "p69",
+      "name": "AIDA64",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\AIDA64\\aida64.exe",
+      "available": true,
+      "desc": "整机信息 + 传感器 + 内存带宽 + 稳定性测试",
+      "admin": false
+    },
+    {
+      "id": "p70",
+      "name": "HWiNFO 64",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\hwinfo\\HWiNFO64.exe",
+      "available": true,
+      "desc": "传感器最全的硬件监控，可日志记录",
+      "admin": false
+    },
+    {
+      "id": "p71",
+      "name": "HWiNFO 32",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\hwinfo\\HWiNFO32.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p72",
+      "name": "Speccy 64",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\speccy\\Speccy64.exe",
+      "available": true,
+      "desc": "整机配置快照，界面清爽",
+      "admin": false
+    },
+    {
+      "id": "p73",
+      "name": "Speccy 32",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\speccy\\Speccy.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p74",
+      "name": "RWEverything",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\RWEverything\\Rw.exe",
+      "available": true,
+      "desc": "直接读写 PCI/内存/EC，进阶调试用",
+      "admin": false
+    },
+    {
+      "id": "p75",
+      "name": "HWMonitor 64",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\HWMonitor\\HWMonitor_x64.exe",
+      "available": true,
+      "desc": "温度/电压/风扇转速实时监控",
+      "admin": false
+    },
+    {
+      "id": "p76",
+      "name": "HWMonitor 32",
+      "category": "bench",
+      "kind": "exe",
+      "rel": "综合检测\\HWMonitor\\HWMonitor_x32.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p77",
+      "name": "外设测试中心",
+      "category": "periph",
+      "kind": "script",
+      "rel": "外设工具\\在线外设测试中心\\在线外设测试中心.bat",
+      "available": true,
+      "desc": "网页版键鼠/手柄综合测试",
+      "admin": false
+    },
+    {
+      "id": "p78",
+      "name": "Keyboard Test",
+      "category": "periph",
+      "kind": "exe",
+      "rel": "外设工具\\Keyboard Test Utility\\Keyboard Test Utility.exe",
+      "available": true,
+      "desc": "键盘按键全键无冲测试",
+      "admin": false
+    },
+    {
+      "id": "p79",
+      "name": "鼠标双击测试",
+      "category": "periph",
+      "kind": "exe",
+      "rel": "外设工具\\鼠标单机变双击测试器\\鼠标单击变双击测试器V2.0.exe",
+      "available": true,
+      "desc": "检测微动老化导致的单击变双击",
+      "admin": false
+    },
+    {
+      "id": "p80",
+      "name": "MOUSERATE",
+      "category": "periph",
+      "kind": "exe",
+      "rel": "外设工具\\MOUSERATE\\MOUSERATE.EXE",
+      "available": true,
+      "desc": "鼠标回报率（Hz）实测",
+      "admin": false
+    },
+    {
+      "id": "p81",
+      "name": "AresonMouse",
+      "category": "periph",
+      "kind": "exe",
+      "rel": "外设工具\\AresonMouseTest\\鼠标测试软件AresonMouseTestProgram.exe",
+      "available": true,
+      "desc": "鼠标按键、滚轮、DPI 测试",
+      "admin": false
+    },
+    {
+      "id": "p82",
+      "name": "MouseTester",
+      "category": "periph",
+      "kind": "exe",
+      "rel": "外设工具\\MouseTester\\MouseTester.exe",
+      "available": true,
+      "desc": "绘制鼠标移动曲线，查丢帧/加速",
+      "admin": false
+    },
+    {
+      "id": "p83",
+      "name": "KeyTweak",
+      "category": "periph",
+      "kind": "exe",
+      "rel": "外设工具\\KeyTweak\\KeyTweak.exe",
+      "available": true,
+      "desc": "改键/屏蔽按键，写注册表",
+      "admin": false
+    },
+    {
+      "id": "p84",
+      "name": "FurMark",
+      "category": "stress",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark\\FurMark.exe",
+      "available": true,
+      "desc": "甜甜圈满载烤机，看温度墙与降频",
+      "admin": false
+    },
+    {
+      "id": "p85",
+      "name": "GpuTest",
+      "category": "stress",
+      "kind": "exe",
+      "rel": "显卡工具\\GpuTest_Windows x64\\GpuTest_GUI.exe",
+      "available": true,
+      "desc": "跨平台 GPU 基准与压力测试",
+      "admin": false
+    },
+    {
+      "id": "p86",
+      "name": "Prime95",
+      "category": "stress",
+      "kind": "exe",
+      "rel": "处理器工具\\Prime95\\prime95.exe",
+      "available": true,
+      "desc": "经典 FPU 满载测试，跑 Small FFTs 查稳定性",
+      "admin": false
+    },
+    {
+      "id": "p87",
+      "name": "LinX",
+      "category": "stress",
+      "kind": "exe",
+      "rel": "处理器工具\\LinX\\LinX.exe",
+      "available": true,
+      "desc": "Intel Linpack 压力测试，考验 CPU 与供电稳定性",
+      "admin": false
+    },
+    {
+      "id": "p88",
+      "name": "AIDA64",
+      "category": "stress",
+      "kind": "exe",
+      "rel": "综合检测\\AIDA64\\aida64.exe",
+      "available": true,
+      "desc": "整机信息 + 传感器 + 内存带宽 + 稳定性测试",
+      "admin": false
+    },
+    {
+      "id": "p89",
+      "name": "cpu burner",
+      "category": "stress",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark\\cpuburner.exe",
+      "available": true,
+      "desc": "轻量 CPU 满载，常与 FurMark 同时开",
+      "admin": false
+    },
+    {
+      "id": "p90",
+      "name": "FurMark2",
+      "category": "stress",
+      "kind": "exe",
+      "rel": "烤鸡工具\\FurMark_win64\\FurMark_GUI.exe",
+      "available": true,
+      "desc": "新版 FurMark，支持 Vulkan/OpenGL 基准",
+      "admin": false
+    },
+    {
+      "id": "p91",
+      "name": "Steam下载",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\Steam\\下载Steam.bat",
+      "available": true,
+      "desc": "跳转 Steam 官方下载",
+      "admin": false
+    },
+    {
+      "id": "p92",
+      "name": "EPC下载",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\epic\\Start.bat",
+      "available": true,
+      "desc": "跳转 Epic 官方下载",
+      "admin": false
+    },
+    {
+      "id": "p93",
+      "name": "EA APP下载",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\eaapp\\Start.bat",
+      "available": true,
+      "desc": "跳转 EA App 下载",
+      "admin": false
+    },
+    {
+      "id": "p94",
+      "name": "战网下载",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\battle\\Start.bat",
+      "available": true,
+      "desc": "跳转暴雪战网下载",
+      "admin": false
+    },
+    {
+      "id": "p95",
+      "name": "存档安装",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\GameBuff\\Start.bat",
+      "available": true,
+      "desc": "游戏存档备份/还原",
+      "admin": false
+    },
+    {
+      "id": "p96",
+      "name": "风灵月影",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\风灵月影\\Start.bat",
+      "available": true,
+      "desc": "单机游戏修改器合集入口",
+      "admin": false
+    },
+    {
+      "id": "p97",
+      "name": "迅雷加速器",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\迅雷加速器\\Start.bat",
+      "available": true,
+      "desc": "游戏加速器下载",
+      "admin": false
+    },
+    {
+      "id": "p98",
+      "name": "雷神加速器",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\雷神加速器\\Start.bat",
+      "available": true,
+      "desc": "游戏加速器下载",
+      "admin": false
+    },
+    {
+      "id": "p99",
+      "name": "迅游加速器",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\迅游加速器\\Start.bat",
+      "available": true,
+      "desc": "游戏加速器下载",
+      "admin": false
+    },
+    {
+      "id": "p100",
+      "name": "斧牛加速器",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\斧牛加速器\\Start.bat",
+      "available": true,
+      "desc": "游戏加速器下载",
+      "admin": false
+    },
+    {
+      "id": "p101",
+      "name": "玩家动力",
+      "category": "game",
+      "kind": "script",
+      "rel": "游戏工具\\玩家动力\\Start.bat",
+      "available": true,
+      "desc": "游戏工具合集入口",
+      "admin": false
+    },
+    {
+      "id": "p102",
+      "name": "游牛加速器",
+      "category": "game",
+      "kind": "info",
+      "rel": null,
+      "desc": "游戏加速器（当前版本已移除）",
+      "available": false
+    },
+    {
+      "id": "p103",
+      "name": "DirectX Repair",
+      "category": "game",
+      "kind": "exe",
+      "rel": "其他工具\\DirectX_Repair\\DirectX Repair.exe",
+      "available": true,
+      "desc": "一键补齐 DirectX / VC 运行库，解决 0xc000007b",
+      "admin": false
+    },
+    {
+      "id": "p104",
+      "name": "BatteryInfo",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\BatteryInfoView\\BatteryInfoView.exe",
+      "available": true,
+      "desc": "笔记本电池设计容量/损耗/循环次数",
+      "admin": false
+    },
+    {
+      "id": "p105",
+      "name": "ULTRAISO",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\ULTRAISO\\ULTRAISO.exe",
+      "available": true,
+      "desc": "ISO 编辑与写入 U 盘",
+      "admin": false
+    },
+    {
+      "id": "p106",
+      "name": "Geek Uninst.",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\Geek Uninstaller\\Geek Uninstaller.exe",
+      "available": true,
+      "desc": "轻量卸载 + 残留注册表清理",
+      "admin": false
+    },
+    {
+      "id": "p107",
+      "name": "Dism++ x86",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\Dism++\\Dism++x86.exe",
+      "available": true,
+      "desc": "系统映像维护、更新清理、启动项管理",
+      "admin": false
+    },
+    {
+      "id": "p108",
+      "name": "Dism++ x64",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\Dism++\\Dism++x64.exe",
+      "available": true,
+      "desc": "同上，64 位版本（推荐）",
+      "admin": false
+    },
+    {
+      "id": "p109",
+      "name": "Dism++ ARM64",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\Dism++\\Dism++ARM64.exe",
+      "available": true,
+      "desc": "同上，ARM64 版本",
+      "admin": false
+    },
+    {
+      "id": "p110",
+      "name": "Everything",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\Everything\\everything.exe",
+      "available": true,
+      "desc": "NTFS 索引秒搜全盘文件",
+      "admin": false
+    },
+    {
+      "id": "p111",
+      "name": "GifCam",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\gifcam\\GifCam.exe",
+      "available": true,
+      "desc": "屏幕录制直接出 GIF",
+      "admin": false
+    },
+    {
+      "id": "p112",
+      "name": "微星小飞机",
+      "category": "other",
+      "kind": "info",
+      "rel": null,
+      "desc": "MSI Afterburner，超频/风扇曲线/OSD",
+      "available": false
+    },
+    {
+      "id": "p113",
+      "name": "检查更新",
+      "category": "other",
+      "kind": "script",
+      "rel": "常用工具\\检查更新\\检查更新.bat",
+      "available": true,
+      "desc": "检查图吧工具箱自身更新",
+      "admin": false
+    },
+    {
+      "id": "p114",
+      "name": "BSView 64",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\bluescreenview\\BlueScreenViewx64.exe",
+      "available": true,
+      "desc": "读取蓝屏 dump，定位出错驱动",
+      "admin": false
+    },
+    {
+      "id": "p115",
+      "name": "BSView 32",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\bluescreenview\\BlueScreenViewx86.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p116",
+      "name": "游戏加速",
+      "category": "other",
+      "kind": "info",
+      "rel": null,
+      "desc": "加速器合集入口",
+      "available": false
+    },
+    {
+      "id": "p117",
+      "name": "DesktopOK",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\DesktopOK\\DesktopOK.exe",
+      "available": true,
+      "desc": "保存/恢复桌面图标布局",
+      "admin": false
+    },
+    {
+      "id": "p118",
+      "name": "procexp 64",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\procexp\\procexp64.exe",
+      "available": true,
+      "desc": "进程树、句柄、线程查看（任务管理器加强版）",
+      "admin": false
+    },
+    {
+      "id": "p119",
+      "name": "procexp 32",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\procexp\\procexp.exe",
+      "available": true,
+      "desc": "同上，32 位版本",
+      "admin": false
+    },
+    {
+      "id": "p120",
+      "name": "rufus",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\rufus\\rufus.exe",
+      "available": true,
+      "desc": "制作 Windows/Linux 启动 U 盘",
+      "admin": false
+    },
+    {
+      "id": "p121",
+      "name": "Ventoy",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\ventoy\\Ventoy2Disk.exe",
+      "available": true,
+      "desc": "U 盘多合一启动，扔 ISO 即用",
+      "admin": false
+    },
+    {
+      "id": "p122",
+      "name": "NEXT ITY",
+      "category": "other",
+      "kind": "script",
+      "rel": "其他工具\\next_itellyou\\Start.bat",
+      "available": true,
+      "desc": "MSDN 原版系统镜像下载入口",
+      "admin": false
+    },
+    {
+      "id": "p123",
+      "name": "ZenTimings",
+      "category": "memory",
+      "kind": "exe",
+      "rel": "内存工具\\ZenTimings\\ZenTimings.exe",
+      "available": true,
+      "desc": "锐龙平台时序/电压一览",
+      "added": true
+    },
+    {
+      "id": "p124",
+      "name": "ChipGenius",
+      "category": "disk",
+      "kind": "exe",
+      "rel": "硬盘工具\\ChipGenius\\ChipGenius.exe",
+      "available": true,
+      "desc": "U 盘主控与闪存识别",
+      "added": true
+    },
+    {
+      "id": "p125",
+      "name": "FlashMaster",
+      "category": "disk",
+      "kind": "script",
+      "rel": "硬盘工具\\FlashMaster\\FlashMaster.bat",
+      "available": true,
+      "desc": "U 盘主控/颗粒检测",
+      "added": true
+    },
+    {
+      "id": "p126",
+      "name": "SSD utils · Start",
+      "category": "disk",
+      "kind": "script",
+      "rel": "硬盘工具\\SSD utils\\Start.bat",
+      "available": true,
+      "desc": "",
+      "added": true
+    },
+    {
+      "id": "p127",
+      "name": "FanControl",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\FanControl\\FanControl.exe",
+      "available": true,
+      "desc": "按温度曲线自定义风扇转速",
+      "added": true
+    },
+    {
+      "id": "p128",
+      "name": "MSIAfterburnerSetup · start",
+      "category": "other",
+      "kind": "script",
+      "rel": "其他工具\\MSIAfterburnerSetup\\start.bat",
+      "available": true,
+      "desc": "",
+      "added": true
+    },
+    {
+      "id": "p129",
+      "name": "WinDbg",
+      "category": "other",
+      "kind": "exe",
+      "rel": "其他工具\\WinDbg\\windbg.exe",
+      "available": true,
+      "desc": "微软官方内核调试器",
+      "added": true
+    }
+  ]
+}

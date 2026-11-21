@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<title>WinToolbox</title>
+<link rel="stylesheet" href="style.css" />
+</head>
+<body data-theme="light">
+<div class="app">
+  <aside class="sidebar">
+    <div class="brand">
+      <div class="brand-mark"><img class="i-light" src="../data/icons/avatar@2x.png" alt="" /><img class="i-dark" src="../data/icons/avatar-dark@2x.png" alt="" /></div>
+      <div class="brand-txt"><b>WinToolbox</b><span>Hardware Utility</span></div>
+    </div>
+
+    <div id="side-resizer" title="拖动调整宽度 · 双击复位"></div>
+
+    <nav id="nav"></nav>
+
+    <div class="side-foot">
+      <div class="foot-row"><span class="pill-run"><i></i><span id="foot-state">就绪</span></span><span class="foot-ver">v0.16.0</span></div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <header class="titlebar">
+      <div class="tb-title">
+        <span id="page-name">硬件与监控</span>
+        <span class="tb-sep"></span>
+        <span class="tb-sub" id="page-sub">本机硬件信息与实时状态</span>
+      </div>
+      <div class="tb-search">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6"/><path d="m16 16 4 4"/></svg>
+        <input id="search" type="text" placeholder="搜索工具…  Ctrl+F" spellcheck="false" />
+      </div>
+      <div class="tb-actions">
+        <button class="tb-btn" id="btn-theme" title="切换到夜间模式">
+          <svg class="i-moon" viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4 8.5 8.5 0 1 0 20 14.5Z"/></svg>
+          <svg class="i-sun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4.2"/><path d="M12 2.2v2.6M12 19.2v2.6M2.2 12h2.6M19.2 12h2.6M5 5l1.9 1.9M17.1 17.1L19 19M19 5l-1.9 1.9M6.9 17.1L5 19"/></svg>
+        </button>
+        <button class="tb-btn" id="btn-settings" title="设置（工具库位置、日志）">
+          <svg viewBox="0 0 24 24"><path d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 0 0 2.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 0 0 1.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 0 0-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 0 0-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 0 0-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 0 0-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 0 0 1.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065Z"/><circle cx="12" cy="12" r="3"/></svg>
+        </button>
+        <div class="winctl">
+          <button data-win="min"><svg viewBox="0 0 12 12"><path d="M2 6h8"/></svg></button>
+          <button data-win="max"><svg viewBox="0 0 12 12"><rect x="2.5" y="2.5" width="7" height="7" rx="1.2"/></svg></button>
+          <button data-win="close" class="danger"><svg viewBox="0 0 12 12"><path d="m3 3 6 6M9 3l-6 6"/></svg></button>
+        </div>
+      </div>
+    </header>
+
+    <div class="content" id="content"></div>
+  </main>
+</div>
+
+  <button id="fab-add" class="fab" title="添加程序（也可以直接把 exe 拖进窗口）">
+    <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>
+    <span>添加程序</span>
+  </button>
+<div class="drop-mask" id="drop-mask">
+  <div class="drop-box">
+    <svg viewBox="0 0 24 24"><path d="M12 16V4M7 9l5-5 5 5M4 16v3a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1v-3"/></svg>
+    <b>松手即可添加</b>
+    <span>支持 exe / lnk / bat / 文件夹 / 网址快捷方式</span>
+  </div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script src="i18n.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

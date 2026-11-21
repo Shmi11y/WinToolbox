@@ -1,0 +1,18 @@
+{
+  "name": "tuba-toolbox-next",
+  "productName": "WinToolbox",
+  "version": "0.16.0",
+  "description": "Windows 桌面工具台：硬件监控、工具库和系统调优",
+  "main": "main.js",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "start": "electron .",
+    "dist": "node tools/build.js"
+  },
+  "devDependencies": {
+    "@electron/asar": "3.4.1",
+    "electron": "45.4.1",
+    "rcedit": "4.0.1"
+  }
+}

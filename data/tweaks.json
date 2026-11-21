@@ -1,0 +1,173 @@
+{
+  "groups": [
+    { "id": "privacy", "name": "隐私保护", "desc": "关掉遥测、广告 ID、活动记录等数据上报", "icon": "shield" },
+    { "id": "perf", "name": "性能与游戏", "desc": "电源方案、GPU 调度、游戏模式、网络节流", "icon": "bolt" },
+    { "id": "desktop", "name": "桌面体验", "desc": "任务栏、小组件、动画、右键菜单", "icon": "monitor" },
+    { "id": "service", "name": "系统服务", "desc": "关闭不常用的后台服务，释放内存与磁盘", "icon": "server" },
+    { "id": "clean", "name": "清理", "desc": "临时文件、更新缓存、缩略图、回收站", "icon": "trash" },
+    { "id": "repair", "name": "修复与还原", "desc": "系统文件检查、组件修复、还原点、网络诊断", "icon": "wrench" }
+  ],
+  "items": [
+    {
+      "id": "telemetry", "group": "privacy", "name": "诊断遥测级别", "kind": "toggle", "risk": "low", "admin": true,
+      "desc": "把 Windows 诊断数据改为「仅安全」，停止向微软上报使用数据",
+      "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DataCollection"
+    },
+    {
+      "id": "adid", "group": "privacy", "name": "广告 ID", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "关闭用于跨应用个性化广告的广告标识符",
+      "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo"
+    },
+    {
+      "id": "activity", "group": "privacy", "name": "活动历史记录", "kind": "toggle", "risk": "low", "admin": true,
+      "desc": "停止记录你在本机打开过的应用与文档，也不上传",
+      "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System"
+    },
+    {
+      "id": "location", "group": "privacy", "name": "定位服务", "kind": "toggle", "risk": "mid", "admin": true,
+      "desc": "整体关闭系统定位权限（地图、天气等会失效）",
+      "target": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\location"
+    },
+    {
+      "id": "feedback", "group": "privacy", "name": "反馈请求", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "不再定期弹「对 Windows 的反馈」提示",
+      "target": "HKCU\\Software\\Microsoft\\Siuf\\Rules"
+    },
+    {
+      "id": "tips", "group": "privacy", "name": "建议与使用提示", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "关闭开始菜单与设置里的推荐内容、软文推广",
+      "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager"
+    },
+    {
+      "id": "cloudsearch", "group": "privacy", "name": "搜索联网结果", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "开始菜单搜索只查本地，不走 Bing、不上传关键词",
+      "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search"
+    },
+    {
+      "id": "power-plan", "group": "perf", "name": "电源方案", "kind": "choice", "risk": "low", "admin": true,
+      "desc": "切换处理器性能策略。台式机建议高性能，笔记本注意发热与续航",
+      "target": "powercfg",
+      "options": [
+        { "value": "balanced", "label": "平衡" },
+        { "value": "high", "label": "高性能" },
+        { "value": "ultimate", "label": "卓越性能" }
+      ]
+    },
+    {
+      "id": "hags", "group": "perf", "name": "硬件加速 GPU 调度", "kind": "toggle", "risk": "low", "admin": true,
+      "desc": "把显存调度交给 GPU 自己管，部分游戏帧数更稳（需重启）",
+      "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers"
+    },
+    {
+      "id": "gamemode", "group": "perf", "name": "游戏模式", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "游戏运行时优先分配 CPU 与 GPU 资源",
+      "target": "HKCU\\Software\\Microsoft\\GameBar"
+    },
+    {
+      "id": "memcompression", "group": "perf", "name": "内存压缩", "kind": "toggle", "risk": "mid", "admin": true,
+      "desc": "关闭后内存占用略升但 CPU 开销降低；16G 以下内存不建议关",
+      "target": "MMAgent"
+    },
+    {
+      "id": "netthrottle", "group": "perf", "name": "网络节流", "kind": "toggle", "risk": "low", "admin": true,
+      "desc": "解除系统对多媒体程序的 10ms 网络限流，降低游戏与语音延迟",
+      "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile"
+    },
+    {
+      "id": "gamesched", "group": "perf", "name": "游戏任务优先级", "kind": "toggle", "risk": "low", "admin": true,
+      "desc": "提高 Games 任务的 GPU 与 CPU 调度优先级",
+      "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games"
+    },
+    {
+      "id": "taskbar-search", "group": "desktop", "name": "任务栏搜索框", "kind": "choice", "risk": "low", "admin": false,
+      "desc": "隐藏搜索框只留图标，或彻底隐藏，给任务栏腾地方",
+      "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Search",
+      "options": [
+        { "value": "0", "label": "隐藏" },
+        { "value": "1", "label": "仅图标" },
+        { "value": "2", "label": "显示搜索框" }
+      ]
+    },
+    {
+      "id": "widgets", "group": "desktop", "name": "小组件", "kind": "toggle", "risk": "low", "admin": true,
+      "desc": "关闭任务栏左侧的天气与资讯面板，减少后台联网",
+      "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Dsh"
+    },
+    {
+      "id": "taskview", "group": "desktop", "name": "任务视图按钮", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "隐藏任务栏上的任务视图图标（Win+Tab 仍可用）",
+      "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced"
+    },
+    {
+      "id": "transparency", "group": "desktop", "name": "窗口透明效果", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "关闭毛玻璃透明，低配机器或远程桌面下更省资源",
+      "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Themes\\Personalize"
+    },
+    {
+      "id": "animations", "group": "desktop", "name": "窗口动画", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "关闭最小化/最大化动画，窗口切换更跟手",
+      "target": "HKCU\\Control Panel\\Desktop\\WindowMetrics"
+    },
+    {
+      "id": "classicmenu", "group": "desktop", "name": "经典右键菜单", "kind": "toggle", "risk": "low", "admin": false,
+      "desc": "Win11 恢复成 Win10 的完整右键菜单，不用再点「显示更多选项」",
+      "target": "HKCU\\Software\\Classes\\CLSID\\{86ca1aa0-34aa-4e8b-a509-50c905bae2a2}\\InprocServer32"
+    },
+    {
+      "id": "svc-diagtrack", "group": "service", "name": "连接用户体验和遥测", "kind": "toggle", "risk": "low", "admin": true,
+      "desc": "DiagTrack 服务：微软的诊断数据上报通道", "target": "DiagTrack"
+    },
+    {
+      "id": "svc-sysmain", "group": "service", "name": "SysMain 预读取", "kind": "toggle", "risk": "mid", "admin": true,
+      "desc": "机械硬盘建议保留；纯 SSD 机器关闭可减少后台占用", "target": "SysMain"
+    },
+    {
+      "id": "svc-wsearch", "group": "service", "name": "Windows Search 索引", "kind": "toggle", "risk": "mid", "admin": true,
+      "desc": "关闭后开始菜单与资源管理器搜索变慢，但磁盘占用下降", "target": "WSearch"
+    },
+    {
+      "id": "svc-spooler", "group": "service", "name": "打印后台处理", "kind": "toggle", "risk": "high", "admin": true,
+      "desc": "不接打印机可关；有打印机或需要「打印到 PDF」时不要关", "target": "Spooler"
+    },
+    {
+      "id": "svc-xbox", "group": "service", "name": "Xbox 相关服务", "kind": "toggle", "risk": "mid", "admin": true,
+      "desc": "不玩 Xbox 游戏与 Game Pass 时可关闭一组服务", "target": "XblAuthManager,XblGameSave,XboxGipSvc,XboxNetApiSvc"
+    },
+    {
+      "id": "clean-temp", "group": "clean", "name": "临时文件", "kind": "action", "risk": "low", "admin": false,
+      "desc": "清理用户 TEMP 与 Windows\\Temp 中可删除的文件", "target": "%TEMP%"
+    },
+    {
+      "id": "clean-update", "group": "clean", "name": "Windows 更新缓存", "kind": "action", "risk": "mid", "admin": true,
+      "desc": "删除 SoftwareDistribution\\Download 里已安装的更新包，通常能腾出几 GB", "target": "SoftwareDistribution"
+    },
+    {
+      "id": "clean-thumb", "group": "clean", "name": "缩略图缓存", "kind": "action", "risk": "low", "admin": false,
+      "desc": "重建缩略图缓存，可修复图片显示错乱", "target": "Explorer"
+    },
+    {
+      "id": "clean-recycle", "group": "clean", "name": "回收站", "kind": "action", "risk": "mid", "admin": false,
+      "desc": "清空所有磁盘的回收站，删除后不可恢复", "target": "RecycleBin"
+    },
+    {
+      "id": "flushdns", "group": "clean", "name": "刷新 DNS 缓存", "kind": "action", "risk": "low", "admin": true,
+      "desc": "解决改了 hosts 或 DNS 后不生效、网页打不开的问题", "target": "DNS"
+    },
+    {
+      "id": "net-test", "group": "repair", "name": "网络连通性测试", "kind": "action", "risk": "low", "admin": false,
+      "desc": "测试到公共 DNS 的延迟、丢包与域名解析是否正常", "target": "Network"
+    },
+    {
+      "id": "restore-point", "group": "repair", "name": "创建系统还原点", "kind": "action", "risk": "low", "admin": true,
+      "desc": "动手改系统前先打一个还原点（需要系统保护已开启）", "target": "Restore"
+    },
+    {
+      "id": "sfc", "group": "repair", "name": "系统文件检查 (SFC)", "kind": "action", "risk": "low", "admin": true,
+      "desc": "扫描并修复损坏的系统文件，通常 5-15 分钟", "target": "sfc /scannow"
+    },
+    {
+      "id": "dism", "group": "repair", "name": "组件存储修复 (DISM)", "kind": "action", "risk": "mid", "admin": true,
+      "desc": "修复系统映像，SFC 修不好时用它；需要联网下载组件", "target": "DISM /RestoreHealth"
+    }
+  ]
+}

@@ -1,0 +1,3930 @@
+{
+ "items": [
+  {
+   "id": "yq.basic.disable_uac",
+   "group": "perf",
+   "name": "禁用 UAC",
+   "desc": "将 EnableLUA=0，关闭用户帐户控制，程序运行不再弹出权限确认框。",
+   "kind": "toggle",
+   "risk": "high",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\EnableLUA",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+    "name": "EnableLUA",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.basic.disable_store_auto_update",
+   "group": "perf",
+   "name": "禁止自动更新商店应用",
+   "desc": "通过机器策略将 AutoDownload=2，关闭 Windows 商店后台自动更新。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\WindowsStore\\AutoDownload",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\WindowsStore",
+    "name": "AutoDownload",
+    "vtype": "DWORD",
+    "on": 2,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.basic.disable_windows_update",
+   "group": "perf",
+   "name": "关闭 Windows 自动更新",
+   "desc": "将 AU 策略 NoAutoUpdate=1，手动控制补丁安装时机。",
+   "kind": "toggle",
+   "risk": "high",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU\\NoAutoUpdate",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\WindowsUpdate\\AU",
+    "name": "NoAutoUpdate",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.gaming.dvr.disable",
+   "group": "perf",
+   "name": "禁用 Game DVR 录制",
+   "desc": "将机器策略 AllowGameDVR=0，禁止 Win+G 游戏录制与截图，释放 GPU 与内存资源。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR\\AllowGameDVR",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\GameDVR",
+    "name": "AllowGameDVR",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.security.disable_vbs",
+   "group": "perf",
+   "name": "禁用 VBS 虚拟化安全",
+   "desc": "将 DeviceGuard 的 EnableVirtualizationBasedSecurity=0，关闭基于虚拟化的安全以换取性能。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\EnableVirtualizationBasedSecurity",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\DeviceGuard",
+    "name": "EnableVirtualizationBasedSecurity",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.security.disable_hvci",
+   "group": "perf",
+   "name": "禁用内存完整性 (HVCI)",
+   "desc": "将 HypervisorEnforcedCodeIntegrity 的 Enabled=0，关闭内存完整性检查。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\Scenarios\\HypervisorEnforcedCodeIntegrity\\Enabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\Scenarios\\HypervisorEnforcedCodeIntegrity",
+    "name": "Enabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.security.disable_cfg",
+   "group": "perf",
+   "name": "禁用控制流保护 (CFG)",
+   "desc": "将内核 MitigationOptions=0，关闭 Control Flow Guard。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel\\MitigationOptions",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel",
+    "name": "MitigationOptions",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.security.disable_defender_realtime",
+   "group": "perf",
+   "name": "禁用 Defender 实时保护",
+   "desc": "将 Defender 策略 DisableRealtimeMonitoring=1，临时关闭实时监控以减少 CPU/磁盘占用。",
+   "kind": "toggle",
+   "risk": "high",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection\\DisableRealtimeMonitoring",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows Defender\\Real-Time Protection",
+    "name": "DisableRealtimeMonitoring",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.security.disable_sehop",
+   "group": "perf",
+   "name": "禁用 SEHOP 异常处理保护",
+   "desc": "将内核 DisableExceptionChainValidation=1，关闭结构化异常处理覆盖保护。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel\\DisableExceptionChainValidation",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\kernel",
+    "name": "DisableExceptionChainValidation",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.adjustments.disable_diagnostic_events",
+   "group": "network",
+   "name": "禁用诊断自动记录器",
+   "desc": "关闭 AutoLogger-DiagTrack 以停止后台跟踪。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\WMI\\AutoLogger\\AutoLogger-Diagtrack-Listener\\Start",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\WMI\\AutoLogger\\AutoLogger-Diagtrack-Listener",
+    "name": "Start",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_wifi_sense",
+   "group": "network",
+   "name": "禁用 Wi-Fi 感知",
+   "desc": "阻止 Windows 自动连接到建议的热点。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config\\AutoConnectAllowedOEM",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\WcmSvc\\wifinetworkmanager\\config",
+    "name": "AutoConnectAllowedOEM",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.disable_qos_scheduler",
+   "group": "network",
+   "name": "禁用 QoS 数据包调度",
+   "desc": "将 NonBestEffortLimit=0，释放 Windows 默认保留的 20% 带宽。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Psched\\NonBestEffortLimit",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\Psched",
+    "name": "NonBestEffortLimit",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.disable_delivery_optimization",
+   "group": "network",
+   "name": "禁用传递优化",
+   "desc": "通过机器策略将 DODownloadMode=0，停止 Windows 更新 P2P 后台上传。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization\\DODownloadMode",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\DeliveryOptimization",
+    "name": "DODownloadMode",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.ipv6_prefer_ipv4",
+   "group": "network",
+   "name": "优先使用 IPv4",
+   "desc": "将 DisabledComponents=32（仅禁用 IPv6 隧道，保留原生 IPv6）；重启后由 TCP/IP 栈重新读取。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip6\\Parameters\\DisabledComponents",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip6\\Parameters",
+    "name": "DisabledComponents",
+    "vtype": "DWORD",
+    "on": 32,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.disable_lmhosts",
+   "group": "network",
+   "name": "禁用 LMHOSTS 查询",
+   "desc": "将 EnableLMHOSTS=0，禁用基于 LMHOSTS 文件的 NetBIOS 名称解析。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\EnableLMHOSTS",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters",
+    "name": "EnableLMHOSTS",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_cortana",
+   "group": "privacy",
+   "name": "关闭 Cortana",
+   "desc": "AllowCortana=0，彻底禁用语音助理与云端收集。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search\\AllowCortana",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Search",
+    "name": "AllowCortana",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_license_telemetry",
+   "group": "privacy",
+   "name": "阻止许可证遥测",
+   "desc": "NoGenTicket=1，阻止软件许可状态被周期性上报。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows NT\\CurrentVersion\\Software Protection Platform\\NoGenTicket",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows NT\\CurrentVersion\\Software Protection Platform",
+    "name": "NoGenTicket",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_compatibility_telemetry",
+   "group": "privacy",
+   "name": "禁用兼容性遥测",
+   "desc": "DisableUAR=1，阻止兼容性评估数据回传。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat\\DisableUAR",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat",
+    "name": "DisableUAR",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_privacy_consent",
+   "group": "privacy",
+   "name": "跳过隐私同意屏",
+   "desc": "DisablePrivacyExperience=1，首次登录不再出现隐私提示。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\OOBE\\DisablePrivacyExperience",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\OOBE",
+    "name": "DisablePrivacyExperience",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_error_reporting",
+   "group": "privacy",
+   "name": "禁用错误报告",
+   "desc": "Disabled=1，阻止 Windows Error Reporting 上传 dump。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Error Reporting\\Disabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\Windows Error Reporting",
+    "name": "Disabled",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_steps_recorder",
+   "group": "privacy",
+   "name": "禁用 Steps Recorder",
+   "desc": "DisableStepsRecorder=1，关闭问题步骤记录器。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat\\DisableStepsRecorder",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat",
+    "name": "DisableStepsRecorder",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_inventory_collector",
+   "group": "privacy",
+   "name": "停用 Inventory Collector",
+   "desc": "DisableInventory=1，阻止硬件/应用清单被回传。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat\\DisableInventory",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat",
+    "name": "DisableInventory",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_cloud_speech",
+   "group": "privacy",
+   "name": "关闭云端语音识别",
+   "desc": "AllowInputPersonalization=0，禁用语音/墨迹上传。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\InputPersonalization\\AllowInputPersonalization",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\InputPersonalization",
+    "name": "AllowInputPersonalization",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_webcam",
+   "group": "privacy",
+   "name": "禁用系统级摄像头",
+   "desc": "AllowCamera=0，任何 UWP 都无法启用相机。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Camera\\AllowCamera",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Camera",
+    "name": "AllowCamera",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_onedrive_sync",
+   "group": "privacy",
+   "name": "停用 OneDrive 同步",
+   "desc": "DisableFileSyncNGSC=1，防止后台自动同步。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\OneDrive\\DisableFileSyncNGSC",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\OneDrive",
+    "name": "DisableFileSyncNGSC",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_app_impact_telemetry",
+   "group": "privacy",
+   "name": "关闭应用影响遥测",
+   "desc": "AITEnable=0，停止 Application Telemetry 引擎。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat\\AITEnable",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\AppCompat",
+    "name": "AITEnable",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.system.disable_hibernation",
+   "group": "sys",
+   "name": "关闭休眠并回收 hiberfil.sys",
+   "desc": "HibernateEnabled=0，禁用休眠以释放系统盘空间并避免电源方案冲突。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Power\\HibernateEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Power",
+    "name": "HibernateEnabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.system.boost_game_priority",
+   "group": "sys",
+   "name": "提高游戏任务优先级",
+   "desc": "Games 任务的 Priority=6，使游戏 CPU 调度权重更高。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games\\Priority",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+    "name": "Priority",
+    "vtype": "DWORD",
+    "on": 6,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.system.disable_prefetch",
+   "group": "sys",
+   "name": "禁用 Prefetch",
+   "desc": "EnablePrefetcher=0，避免 SSD 场景下的冗余预读。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters\\EnablePrefetcher",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\PrefetchParameters",
+    "name": "EnablePrefetcher",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.system.long_paths",
+   "group": "sys",
+   "name": "启用长路径支持",
+   "desc": "LongPathsEnabled=1，允许超过 260 字符的文件路径。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem\\LongPathsEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\FileSystem",
+    "name": "LongPathsEnabled",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.system.disable_wpbt",
+   "group": "sys",
+   "name": "禁用 WPBT 启动执行",
+   "desc": "DisableWpbtExecution=1，阻止 OEM 平台二进制表在启动时注入程序。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\DisableWpbtExecution",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager",
+    "name": "DisableWpbtExecution",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.power.restore_point_frequency",
+   "group": "sys",
+   "name": "允许频繁创建还原点",
+   "desc": "SystemRestorePointCreationFrequency=0，绕过还原点 24 小时冷却窗口。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore\\SystemRestorePointCreationFrequency",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\SystemRestore",
+    "name": "SystemRestorePointCreationFrequency",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.power.s0_network_ac",
+   "group": "sys",
+   "name": "待机时断开网络连接（AC）",
+   "desc": "S0 现代待机期间 AC 电源下断开网络连接，减少待机功耗与后台联网。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Power\\PowerSettings\\f15576e8-98b7-4186-b944-eafa664402d9\\ACSettingIndex",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Power\\PowerSettings\\f15576e8-98b7-4186-b944-eafa664402d9",
+    "name": "ACSettingIndex",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.power.s0_network_dc",
+   "group": "sys",
+   "name": "待机时断开网络连接（DC）",
+   "desc": "S0 现代待机期间电池供电下断开网络连接，减少待机功耗与后台联网。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Power\\PowerSettings\\f15576e8-98b7-4186-b944-eafa664402d9\\DCSettingIndex",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Power\\PowerSettings\\f15576e8-98b7-4186-b944-eafa664402d9",
+    "name": "DCSettingIndex",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.storage.disable_8dot3",
+   "group": "sys",
+   "name": "禁用 NTFS 短文件名",
+   "desc": "将 NtfsDisable8dot3NameCreation=1，禁用 8.3 短文件名生成，提升 NTFS 文件系统性能，减少磁盘写入。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem\\NtfsDisable8dot3NameCreation",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\FileSystem",
+    "name": "NtfsDisable8dot3NameCreation",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.storage.optimize_io_page_lock",
+   "group": "sys",
+   "name": "优化 I/O 页面锁定",
+   "desc": "将 IoPageLockLimit=983040，提升大文件读写性能，适合 16GB+ 内存用户。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\IoPageLockLimit",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+    "name": "IoPageLockLimit",
+    "vtype": "DWORD",
+    "on": 983040,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.storage.disable_ntfs_encryption",
+   "group": "sys",
+   "name": "禁用 NTFS 加密",
+   "desc": "将 NtfsDisableEncryption=1，禁用 NTFS 文件系统加密（EFS），减少 CPU 开销。⚠️ 已加密文件不受影响，但无法新建加密文件。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\FileSystem\\NtfsDisableEncryption",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\FileSystem",
+    "name": "NtfsDisableEncryption",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.cpu.system_responsiveness",
+   "group": "cpu",
+   "name": "优化 SystemResponsiveness",
+   "desc": "将 SystemResponsiveness 设为 10，降低 MMCSS 为后台保留的 CPU。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "CPU",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\SystemResponsiveness",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+    "name": "SystemResponsiveness",
+    "vtype": "DWORD",
+    "on": 10,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.cpu.enable_tsx",
+   "group": "cpu",
+   "name": "启用 TSX",
+   "desc": "DisableTsx=0，再次启用 Intel TSX 指令集（需硬件支持）。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Kernel\\DisableTsx",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Kernel",
+    "name": "DisableTsx",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.gpu.disable_vrr",
+   "group": "gpu",
+   "name": "禁用可变刷新率",
+   "desc": "将 GraphicsDrivers 的 VRROptimizeEnable=0，关闭 Windows 可变刷新率（VRR/FreeSync/G-Sync）。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "显卡",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers\\VRROptimizeEnable",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers",
+    "name": "VRROptimizeEnable",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.memory.enable_large_pages",
+   "group": "memory",
+   "name": "启用大页面",
+   "desc": "将 LargePageMinimum=2097152（2MB），启用大页面支持；仅写注册表值，不授予锁定内存权限。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "内存",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\LargePageMinimum",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+    "name": "LargePageMinimum",
+    "vtype": "DWORD",
+    "on": 2097152,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.memory.optimize_system_cache",
+   "group": "memory",
+   "name": "优化系统缓存",
+   "desc": "将 LargeSystemCache=0，减少大文件缓存占用，适合 SSD 用户。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "内存",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\LargeSystemCache",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+    "name": "LargeSystemCache",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.memory.optimize_pagefile",
+   "group": "memory",
+   "name": "关闭关机清除页面文件",
+   "desc": "将 ClearPageFileAtShutdown=0，关闭关机时清除页面文件以缩短关机时间；仅写注册表值，不配置页面文件大小。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "内存",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management\\ClearPageFileAtShutdown",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+    "name": "ClearPageFileAtShutdown",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.memory.optimize_priority",
+   "group": "memory",
+   "name": "优化内存优先级",
+   "desc": "将 Win32PrioritySeparation=38（0x26），让前台游戏获得更高调度权重。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "内存",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\PriorityControl\\Win32PrioritySeparation",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\PriorityControl",
+    "name": "Win32PrioritySeparation",
+    "vtype": "DWORD",
+    "on": 38,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.audio.exclusive_mode_priority",
+   "group": "audio",
+   "name": "音频独占模式优先",
+   "desc": "将 Audio 多媒体任务 Priority=6，提升音频任务调度优先级，获得更低延迟的音频输出。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "音频",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Audio\\Priority",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Audio",
+    "name": "Priority",
+    "vtype": "DWORD",
+    "on": 6,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.basic.disable_uwp_background",
+   "group": "perf",
+   "name": "禁用 UWP 程序后台运行",
+   "desc": "阻止通用应用在后台占用资源。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "性能",
+   "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications\\GlobalUserDisabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "Software\\Microsoft\\Windows\\CurrentVersion\\BackgroundAccessApplications",
+    "name": "GlobalUserDisabled",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.basic.disable_security_notifications",
+   "group": "perf",
+   "name": "关闭安全通知气泡",
+   "desc": "将当前用户 PushNotifications 的 ToastEnabled=0，关闭安全中心通知气泡。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "性能",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PushNotifications\\ToastEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\PushNotifications",
+    "name": "ToastEnabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.basic.disable_edge_startup",
+   "group": "perf",
+   "name": "禁用 Edge 启动增强",
+   "desc": "通过机器策略关闭 Edge Startup Boost。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge\\StartupBoostEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Edge",
+    "name": "StartupBoostEnabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.basic.disable_map_auto_update",
+   "group": "perf",
+   "name": "关闭离线地图自动更新",
+   "desc": "通过机器策略阻止离线地图后台自动下载。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\Maps\\AutoDownloadAndUpdateMapData",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\Maps",
+    "name": "AutoDownloadAndUpdateMapData",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.basic.disable_game_bar",
+   "group": "perf",
+   "name": "关闭 Game Bar 启动面板",
+   "desc": "ShowStartupPanel=0，关闭当前用户的 Game Bar 启动提示。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "性能",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\GameBar\\ShowStartupPanel",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\GameBar",
+    "name": "ShowStartupPanel",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.gaming.mode.enable",
+   "group": "perf",
+   "name": "启用系统游戏模式",
+   "desc": "AllowAutoGameMode=1，保持游戏优先。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "性能",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\GameBar\\AllowAutoGameMode",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\GameBar",
+    "name": "AllowAutoGameMode",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.hide_most_used_apps",
+   "group": "privacy",
+   "name": "隐藏最常使用的应用",
+   "desc": "Start_TrackProgs=0，开始菜单将不再累计或展示“最常使用”的列表。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\Start_TrackProgs",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+    "name": "Start_TrackProgs",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_website_access_language_list",
+   "group": "privacy",
+   "name": "阻止网站读取语言列表",
+   "desc": "HttpAcceptLanguageOptOut=1，网站无法枚举系统语言排序。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\Control Panel\\International\\User Profile\\HttpAcceptLanguageOptOut",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "Control Panel\\International\\User Profile",
+    "name": "HttpAcceptLanguageOptOut",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.tailored_experiences",
+   "group": "privacy",
+   "name": "关闭定向体验",
+   "desc": "TailoredExperiencesWithDiagnosticDataEnabled=0，停止根据诊断数据定制建议内容。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Privacy\\TailoredExperiencesWithDiagnosticDataEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Privacy",
+    "name": "TailoredExperiencesWithDiagnosticDataEnabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.explorer.hidden_files",
+   "group": "desktop",
+   "name": "显示隐藏文件",
+   "desc": "Hidden=1，在资源管理器中显示带隐藏属性的文件与文件夹。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\Hidden",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+    "name": "Hidden",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.registry.disable_thumbnail_delay",
+   "group": "desktop",
+   "name": "移除缩略图悬停延迟",
+   "desc": "ExtendedUIHoverTime=1，使任务栏预览立即出现。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\ExtendedUIHoverTime",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced",
+    "name": "ExtendedUIHoverTime",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.registry.disable_startup_sound",
+   "group": "desktop",
+   "name": "禁用启动声音",
+   "desc": "DisableStartupSound=1，在共享空间中保持启动静音。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "资源管理器",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System\\DisableStartupSound",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\System",
+    "name": "DisableStartupSound",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.registry.disable_low_disk_check",
+   "group": "desktop",
+   "name": "禁用低磁盘空间警报",
+   "desc": "NoLowDiskSpaceChecks=1，关闭低磁盘空间提醒；这可能掩盖磁盘即将耗尽的风险。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\NoLowDiskSpaceChecks",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+    "name": "NoLowDiskSpaceChecks",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.edge.disable_game_assist",
+   "group": "desktop",
+   "name": "禁用 Edge 游戏助手",
+   "desc": "关闭 Edge 游戏助手覆盖层，避免游戏时 GPU 资源竞争和帧率下降。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\Software\\Microsoft\\Edge\\GameAssist\\Enabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "Software\\Microsoft\\Edge\\GameAssist",
+    "name": "Enabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.edge.disable_game_assist_policy",
+   "group": "desktop",
+   "name": "禁用 Edge 游戏助手（策略）",
+   "desc": "通过机器策略禁用 Edge 游戏助手，防止自动重新启用。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "资源管理器",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Edge\\GameAssistEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Edge",
+    "name": "GameAssistEnabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.windows.disable_clipboard_history",
+   "group": "desktop",
+   "name": "禁用剪贴板历史",
+   "desc": "关闭 Windows 剪贴板历史记录功能。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Clipboard\\EnableClipboardHistory",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Clipboard",
+    "name": "EnableClipboardHistory",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.windows.disable_focus_assist",
+   "group": "desktop",
+   "name": "禁用专注助手",
+   "desc": "关闭 Windows 专注助手，确保游戏通知不被拦截。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Notifications\\Settings\\NOC_GLOBAL_SETTING_TOASTS_ENABLED",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Notifications\\Settings",
+    "name": "NOC_GLOBAL_SETTING_TOASTS_ENABLED",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.explorer.end_task",
+   "group": "desktop",
+   "name": "任务栏右键结束任务",
+   "desc": "TaskbarEndTask=1，在任务栏右键菜单显示“结束任务”。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\TaskbarDeveloperSettings\\TaskbarEndTask",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\Advanced\\TaskbarDeveloperSettings",
+    "name": "TaskbarEndTask",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.gpu.enable_hags",
+   "group": "gpu",
+   "name": "开启硬件加速 GPU 调度",
+   "desc": "HwSchMode=2，启用 Hardware Accelerated GPU Scheduling（硬件加速GPU调度），可降低渲染延迟。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "显卡",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers\\HwSchMode",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\GraphicsDrivers",
+    "name": "HwSchMode",
+    "vtype": "DWORD",
+    "on": 2,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.gpu.disable_game_mode_optimizations",
+   "group": "gpu",
+   "name": "禁用游戏模式优化",
+   "desc": "将 GameBar 的 AutoGameModeEnabled=0，关闭 Windows 游戏模式的自动优化，避免与手动优化冲突。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "显卡",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\GameBar\\AutoGameModeEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\GameBar",
+    "name": "AutoGameModeEnabled",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.peripheral.anti_mistouch",
+   "group": "periph",
+   "name": "禁用 Win 键误触",
+   "desc": "NoWinKeys=1，避免游戏过程中误触 Windows 键弹出开始菜单。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "外设",
+   "target": "HKCU\\Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer\\NoWinKeys",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "Software\\Microsoft\\Windows\\CurrentVersion\\Policies\\Explorer",
+    "name": "NoWinKeys",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.input.disable_pen_feedback",
+   "group": "periph",
+   "name": "禁用手写笔反馈",
+   "desc": "PenVisualization=0，关闭手写笔输入时的视觉反馈。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "外设",
+   "target": "HKCU\\Software\\Microsoft\\TabletTip\\1.7\\PenVisualization",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "Software\\Microsoft\\TabletTip\\1.7",
+    "name": "PenVisualization",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.input.optimize_raw_input_buffer",
+   "group": "periph",
+   "name": "优化原始输入缓冲",
+   "desc": "将 Games 任务的 GPU Priority=8，提升原始输入路径的响应。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "外设",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games\\GPU Priority",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+    "name": "GPU Priority",
+    "vtype": "DWORD",
+    "on": 8,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.audio.disable_enhancements",
+   "group": "audio",
+   "name": "禁用音频增强",
+   "desc": "将 DisableSystemEffects=1，关闭 Windows 音频增强效果，减少音频处理延迟。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "音频",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Audio\\DisableSystemEffects",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Audio",
+    "name": "DisableSystemEffects",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.audio.disable_spatial_sound",
+   "group": "audio",
+   "name": "禁用空间音效",
+   "desc": "将 EnableSpatialAudio=0，关闭 Windows Sonic 等空间音效处理，减少音频延迟。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "音频",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Audio\\EnableSpatialAudio",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Audio",
+    "name": "EnableSpatialAudio",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.audio.disable_service_restart",
+   "group": "audio",
+   "name": "禁用音频服务自动重启",
+   "desc": "将 Audiosrv 的 DelayedAutoStart=0，加快音频服务响应，避免游戏音频中断。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "音频",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Audiosrv\\DelayedAutoStart",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Audiosrv",
+    "name": "DelayedAutoStart",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.audio.disable_comm_ducking",
+   "group": "audio",
+   "name": "禁用通信音量降低",
+   "desc": "将 UserDuckingPreference=3，关闭通话时自动压低其他音量的功能。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "音频",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Multimedia\\Audio\\UserDuckingPreference",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Multimedia\\Audio",
+    "name": "UserDuckingPreference",
+    "vtype": "DWORD",
+    "on": 3,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.security.disable_smartscreen",
+   "group": "perf",
+   "name": "禁用 SmartScreen",
+   "desc": "将 Explorer 的 SmartScreenEnabled=Off，关闭应用启动时的信誉检查。",
+   "kind": "toggle",
+   "risk": "high",
+   "admin": true,
+   "tag": "性能",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\SmartScreenEnabled",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer",
+    "name": "SmartScreenEnabled",
+    "vtype": "STRING",
+    "on": "Off",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.set_congestion_ctcp",
+   "group": "network",
+   "name": "启用复合 TCP",
+   "desc": "将 CongestionProvider=ctcp，启用复合 TCP（Compound TCP）以在宽带链路上更快恢复。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\CongestionProvider",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "CongestionProvider",
+    "vtype": "STRING",
+    "on": "ctcp",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_radio_access",
+   "group": "privacy",
+   "name": "拒绝无线电访问",
+   "desc": "将 CapabilityAccessManager\\radios 置为 Deny。阻止应用控制 Wi-Fi/蓝牙开关，保护无线连接安全。部分网络管理应用可能受影响。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\radios\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\radios",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_messaging",
+   "group": "privacy",
+   "name": "拒绝短信/聊天",
+   "desc": "chat capability = Deny。阻止应用读取短信和聊天记录，保护通信隐私。短信同步应用将无法工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\chat\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\chat",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_email",
+   "group": "privacy",
+   "name": "拒绝邮箱访问",
+   "desc": "email capability = Deny。阻止应用访问邮件内容，保护邮件隐私。第三方邮件客户端可能受影响。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\email\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\email",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_calendar",
+   "group": "privacy",
+   "name": "拒绝日历访问",
+   "desc": "appointments capability = Deny。阻止应用读取日程安排，保护行程隐私。日历同步应用将无法工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\appointments\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\appointments",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_contacts",
+   "group": "privacy",
+   "name": "拒绝联系人访问",
+   "desc": "contacts capability = Deny。阻止应用读取联系人列表，保护社交隐私。通讯录同步应用将无法工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\contacts\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\contacts",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_camera",
+   "group": "privacy",
+   "name": "拒绝相机访问",
+   "desc": "webcam capability = Deny。阻止应用使用摄像头，防止偷拍。视频通话和拍照应用将无法使用摄像头。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\webcam\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\webcam",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_phone_calls",
+   "group": "privacy",
+   "name": "拒绝拨号",
+   "desc": "phoneCall capability = Deny。阻止应用发起电话呼叫，防止恶意扣费。VoIP 应用可能受影响。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\phoneCall\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\phoneCall",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_call_history",
+   "group": "privacy",
+   "name": "拒绝通话记录",
+   "desc": "phoneCallHistory capability = Deny。阻止应用读取通话历史，保护通信隐私。通话记录同步应用将无法工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\phoneCallHistory\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\phoneCallHistory",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_trusted_devices",
+   "group": "privacy",
+   "name": "拒绝受信任设备",
+   "desc": "trustedDevices capability = Deny。阻止应用访问已配对设备列表，保护设备信息。设备管理应用可能受影响。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\trustedDevices\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\trustedDevices",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_motion",
+   "group": "privacy",
+   "name": "拒绝运动传感器",
+   "desc": "activity capability = Deny。阻止应用获取运动和健身数据，保护健康隐私。健身追踪应用将无法工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\activity\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\activity",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_tasks",
+   "group": "privacy",
+   "name": "拒绝任务访问",
+   "desc": "userDataTasks capability = Deny。阻止应用读取待办事项，保护工作隐私。任务同步应用将无法工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\userDataTasks\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\userDataTasks",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_notifications",
+   "group": "privacy",
+   "name": "拒绝系统通知访问",
+   "desc": "userNotificationListener capability = Deny。阻止应用读取系统通知内容，保护消息隐私。通知同步应用将无法工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\userNotificationListener\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\userNotificationListener",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_account_info",
+   "group": "privacy",
+   "name": "拒绝账户信息",
+   "desc": "userAccountInformation capability = Deny。阻止应用获取用户名和头像，保护身份隐私。个性化应用可能显示默认头像。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\userAccountInformation\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\userAccountInformation",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.deny_app_access_to_diagnostic_info",
+   "group": "privacy",
+   "name": "拒绝诊断数据",
+   "desc": "appDiagnostics capability = Deny。阻止应用收集其他应用的诊断信息，保护使用习惯隐私。诊断工具可能无法正常工作。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\appDiagnostics\\Value",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\CapabilityAccessManager\\ConsentStore\\appDiagnostics",
+    "name": "Value",
+    "vtype": "STRING",
+    "on": "Deny",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.system.prioritize_games",
+   "group": "sys",
+   "name": "设置游戏调度类别",
+   "desc": "Scheduling Category=High，保证任务始终运行在高优先级队列。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "系统",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games\\Scheduling Category",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+    "name": "Scheduling Category",
+    "vtype": "STRING",
+    "on": "High",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.gpu.force_high_performance_gpu",
+   "group": "gpu",
+   "name": "全局优先独显",
+   "desc": "将 DirectXUserGlobalSettings=GpuPreference=2;，让系统默认使用高性能独立显卡，避免游戏误用核显。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "显卡",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences\\DirectXUserGlobalSettings",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\DirectX\\UserGpuPreferences",
+    "name": "DirectXUserGlobalSettings",
+    "vtype": "STRING",
+    "on": "GpuPreference=2;",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.gpu.set_sfio_priority",
+   "group": "gpu",
+   "name": "提升 GPU SFIO 优先级",
+   "desc": "将 Games 多媒体任务的 SFIO Priority=High，使游戏流媒体 I/O 走高优通道，减少帧时间波动。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "显卡",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games\\SFIO Priority",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+    "name": "SFIO Priority",
+    "vtype": "STRING",
+    "on": "High",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.input.disable_pointer_trails",
+   "group": "periph",
+   "name": "禁用鼠标指针轨迹",
+   "desc": "MouseTrails=0，关闭鼠标指针轨迹。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "外设",
+   "target": "HKCU\\Control Panel\\Mouse\\MouseTrails",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "Control Panel\\Mouse",
+    "name": "MouseTrails",
+    "vtype": "STRING",
+    "on": "0",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.input.disable_snap_to",
+   "group": "periph",
+   "name": "禁用自动跳转到默认按钮",
+   "desc": "SnapToDefaultButton=0，关闭指针自动跳转。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "外设",
+   "target": "HKCU\\Control Panel\\Mouse\\SnapToDefaultButton",
+   "spec": {
+    "type": "reg",
+    "hive": "HKCU",
+    "key": "Control Panel\\Mouse",
+    "name": "SnapToDefaultButton",
+    "vtype": "STRING",
+    "on": "0",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.audio.optimize_buffer",
+   "group": "audio",
+   "name": "优化音频缓冲区",
+   "desc": "将 Games 任务的 Latency Sensitive=True，降低音频缓冲延迟约 10-20ms。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "音频",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games\\Latency Sensitive",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Games",
+    "name": "Latency Sensitive",
+    "vtype": "STRING",
+    "on": "True",
+    "off": null
+   }
+  },
+  {
+   "id": "yq.privacy.disable_upnp_sharing",
+   "group": "privacy",
+   "name": "关闭 UPnP 共享",
+   "desc": "禁用 SSDPSRV 与 UPnP Device Host，阻止局域网自动发现和共享。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "服务：SSDPSRV, upnphost",
+   "spec": {
+    "type": "service",
+    "names": [
+     "SSDPSRV",
+     "upnphost"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.privacy.disable_sensor_services",
+   "group": "privacy",
+   "name": "禁用传感器服务",
+   "desc": "停用 SensorDataService/SensrSvc，应用无法获取环境/运动数据。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "服务：SensorDataService, SensrSvc",
+   "spec": {
+    "type": "service",
+    "names": [
+     "SensorDataService",
+     "SensrSvc"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.services.disable_xbox_services",
+   "group": "service",
+   "name": "停用 Xbox 关联服务",
+   "desc": "禁用 XboxGipSvc/XblAuthManager/XblGameSave/XboxNetApiSvc/GamingServices。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务：XboxGipSvc, XblAuthManager, XblGameSave, XboxNetApiSvc, GamingServices, GamingServicesNet",
+   "spec": {
+    "type": "service",
+    "names": [
+     "XboxGipSvc",
+     "XblAuthManager",
+     "XblGameSave",
+     "XboxNetApiSvc",
+     "GamingServices",
+     "GamingServicesNet"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.network.disable_adapter_power_saving",
+   "group": "network",
+   "name": "禁用网卡节能",
+   "desc": "关闭 PnP 电源管理策略和厂商 EEE 开关，防止适配器在游戏过程中休眠。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318} （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}",
+    "pairs": [
+     {
+      "name": "PnPCapabilities",
+      "value": 24
+     },
+     {
+      "name": "*EEE",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.disable_flow_control",
+   "group": "network",
+   "name": "禁用流量控制",
+   "desc": "强制 *FlowControl=0，使网卡永不因接收拥塞而暂停出站帧。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318} （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}",
+    "pairs": [
+     {
+      "name": "*FlowControl",
+      "value": 0
+     },
+     {
+      "name": "FlowControl",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.disable_interrupt_moderation",
+   "group": "network",
+   "name": "禁用中断调制",
+   "desc": "关闭中断合并，以最低延迟将数据包传递到 CPU。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318} （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}",
+    "pairs": [
+     {
+      "name": "*InterruptModeration",
+      "value": 0
+     },
+     {
+      "name": "*InterruptModerationMode",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.enable_lso",
+   "group": "network",
+   "name": "启用大数据包发送卸载",
+   "desc": "确保网卡对 IPv4/IPv6 执行分段卸载，以保持 CPU 开销最小。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318} （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}",
+    "pairs": [
+     {
+      "name": "*LsoV1IPv4",
+      "value": 1
+     },
+     {
+      "name": "*LsoV2IPv4",
+      "value": 1
+     },
+     {
+      "name": "*LsoV2IPv6",
+      "value": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.optimize_adapter_buffers",
+   "group": "network",
+   "name": "增大网卡缓冲区",
+   "desc": "Raise both receive and transmit buffers to 512 so bursts don’t drop packets under heavy load.",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318} （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}",
+    "pairs": [
+     {
+      "name": "*ReceiveBuffers",
+      "value": 512
+     },
+     {
+      "name": "*TransmitBuffers",
+      "value": 512
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.optimize_checksum_offload",
+   "group": "network",
+   "name": "启用校验和卸载",
+   "desc": "为 IPv4/IPv6 启用接收/发送校验和卸载，以保持延迟一致。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318} （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e972-e325-11ce-bfc1-08002be10318}",
+    "pairs": [
+     {
+      "name": "*IPChecksumOffloadIPv4",
+      "value": 3
+     },
+     {
+      "name": "*TCPChecksumOffloadIPv4",
+      "value": 3
+     },
+     {
+      "name": "*UDPChecksumOffloadIPv4",
+      "value": 3
+     },
+     {
+      "name": "*TCPChecksumOffloadIPv6",
+      "value": 3
+     },
+     {
+      "name": "*UDPChecksumOffloadIPv6",
+      "value": 3
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.disable_nagle",
+   "group": "network",
+   "name": "禁用 Nagle 算法",
+   "desc": "在活动适配器上应用 TcpAckFrequency/TCPNoDelay = 1，以获得最低的发送延迟。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Interfaces （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Interfaces",
+    "pairs": [
+     {
+      "name": "TcpAckFrequency",
+      "value": 1
+     },
+     {
+      "name": "TCPNoDelay",
+      "value": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.disable_netbios",
+   "group": "network",
+   "name": "禁用 NetBIOS over TCP/IP",
+   "desc": "在每个 NetBT 接口上将 NetbiosOptions=2，关闭 NetBIOS over TCP/IP 名称解析。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\Interfaces （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\NetBT\\Parameters\\Interfaces",
+    "pairs": [
+     {
+      "name": "NetbiosOptions",
+      "value": 2
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.amd.radeon_anti_lag",
+   "group": "cpu",
+   "name": "AMD Radeon 低延迟",
+   "desc": "关闭 ULPS 节能与深度睡眠，降低 GPU 响应延迟；仅作用于检测到的 AMD/ATI 显卡。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318} （所有网卡实例）",
+   "spec": {
+    "type": "nic",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Class\\{4d36e968-e325-11ce-bfc1-08002be10318}",
+    "pairs": [
+     {
+      "name": "EnableUlps",
+      "value": 0
+     },
+     {
+      "name": "PP_SclkDeepSleepDisable",
+      "value": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.optimize_dns",
+   "group": "network",
+   "name": "优化 DNS 客户端策略",
+   "desc": "降低缓存 TTL/负缓存窗口并强制零服务器优先级延迟，使解析器重新查询最快的 DNS 端点。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Parameters  (MaxCacheTtl, MaxNegativeCacheTtl, NegativeSOACacheTime, NetFailureCacheTime, ServerPriorityTimeLimit)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Dnscache\\Parameters",
+    "values": [
+     {
+      "name": "MaxCacheTtl",
+      "vtype": "DWORD",
+      "value": 900
+     },
+     {
+      "name": "MaxNegativeCacheTtl",
+      "vtype": "DWORD",
+      "value": 30
+     },
+     {
+      "name": "NegativeSOACacheTime",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "NetFailureCacheTime",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "ServerPriorityTimeLimit",
+      "vtype": "DWORD",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.optimize_afd",
+   "group": "network",
+   "name": "优化 Winsock 参数",
+   "desc": "将 AFD 接收/发送窗口设为 65535，提升网络吞吐量。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\AFD\\Parameters  (DefaultReceiveWindow, DefaultSendWindow)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\AFD\\Parameters",
+    "values": [
+     {
+      "name": "DefaultReceiveWindow",
+      "vtype": "DWORD",
+      "value": 65535
+     },
+     {
+      "name": "DefaultSendWindow",
+      "vtype": "DWORD",
+      "value": 65535
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.network.disable_throttling_complete",
+   "group": "network",
+   "name": "禁用网络限流",
+   "desc": "将 NetworkThrottlingIndex 设为最大值、SystemResponsiveness 设为 0，完全禁用网络限流。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile  (SystemResponsiveness)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile",
+    "values": [
+     {
+      "name": "SystemResponsiveness",
+      "vtype": "DWORD",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.privacy.disable_advertising_id",
+   "group": "privacy",
+   "name": "禁用广告 ID",
+   "desc": "重置 AdvertisingInfo 并将 Enabled 设为 0，避免跨应用跟踪。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo  (Enabled, Id)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\AdvertisingInfo",
+    "values": [
+     {
+      "name": "Enabled",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "Id",
+      "vtype": "STRING",
+      "value": "00000000-0000-0000-0000-000000000000"
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.privacy.disable_app_sync",
+   "group": "privacy",
+   "name": "禁用设置/应用同步",
+   "desc": "DisableSettingSync 与 DisableSettingSyncUserOverride 均为 1，强制本地化配置。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\SettingSync  (DisableSettingSync, DisableSettingSyncUserOverride)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\SettingSync",
+    "values": [
+     {
+      "name": "DisableSettingSync",
+      "vtype": "DWORD",
+      "value": 1
+     },
+     {
+      "name": "DisableSettingSyncUserOverride",
+      "vtype": "DWORD",
+      "value": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.privacy.disable_cloud_content",
+   "group": "privacy",
+   "name": "关闭云推荐内容",
+   "desc": "禁用 Spotlight/消费者体验等云推送。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent  (DisableWindowsConsumerFeatures, DisableWindowsSpotlightFeatures, DisableSoftLanding)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\CloudContent",
+    "values": [
+     {
+      "name": "DisableWindowsConsumerFeatures",
+      "vtype": "DWORD",
+      "value": 1
+     },
+     {
+      "name": "DisableWindowsSpotlightFeatures",
+      "vtype": "DWORD",
+      "value": 1
+     },
+     {
+      "name": "DisableSoftLanding",
+      "vtype": "DWORD",
+      "value": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.privacy.disable_handwriting_collection",
+   "group": "privacy",
+   "name": "禁止文本/手写收集",
+   "desc": "RestrictImplicitInk/TextCollection 设为 1。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "隐私防护",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\InputPersonalization  (RestrictImplicitInkCollection, RestrictImplicitTextCollection)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\InputPersonalization",
+    "values": [
+     {
+      "name": "RestrictImplicitInkCollection",
+      "vtype": "DWORD",
+      "value": 1
+     },
+     {
+      "name": "RestrictImplicitTextCollection",
+      "vtype": "DWORD",
+      "value": 1
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.cleanup.hosts_backup",
+   "group": "clean",
+   "name": "备份/恢复 hosts 文件",
+   "desc": "对系统 hosts 文件创建 SHA-256 校验的原子备份副本；恢复时逐字节还原到备份点。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "清理",
+   "target": "OrchestratedHostsBackupOperation",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.windows.disable_tips",
+   "group": "desktop",
+   "name": "禁用 Windows 提示",
+   "desc": "关闭 ContentDeliveryManager 的软推荐和提示内容。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager  (SoftLandingEnabled, SubscribedContent-338389Enabled)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+    "values": [
+     {
+      "name": "SoftLandingEnabled",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "SubscribedContent-338389Enabled",
+      "vtype": "DWORD",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.windows.disable_suggested_apps",
+   "group": "desktop",
+   "name": "禁用建议应用",
+   "desc": "关闭预装、静默安装和 OEM 建议应用入口。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "资源管理器",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager  (OemPreInstalledAppsEnabled, PreInstalledAppsEnabled, PreInstalledAppsEverEnabled, SilentInstalledAppsEnabled)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\ContentDeliveryManager",
+    "values": [
+     {
+      "name": "OemPreInstalledAppsEnabled",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "PreInstalledAppsEnabled",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "PreInstalledAppsEverEnabled",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "SilentInstalledAppsEnabled",
+      "vtype": "DWORD",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.windows.disable_timeline",
+   "group": "desktop",
+   "name": "禁用时间线",
+   "desc": "关闭活动历史记录的启用、发布与上传，阻止跨设备同步。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "资源管理器",
+   "target": "HKLM\\SOFTWARE\\Policies\\Microsoft\\Windows\\System  (EnableActivityFeed, PublishUserActivities, UploadUserActivities)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Policies\\Microsoft\\Windows\\System",
+    "values": [
+     {
+      "name": "EnableActivityFeed",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "PublishUserActivities",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "UploadUserActivities",
+      "vtype": "DWORD",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.cpu.disable_spectre_meltdown",
+   "group": "cpu",
+   "name": "禁用 Spectre/Meltdown 缓解",
+   "desc": "将内核 Memory Management 的 FeatureSettingsOverride/FeatureSettingsOverrideMask=3，关闭 CPU 漏洞缓解。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "CPU",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management  (FeatureSettingsOverride, FeatureSettingsOverrideMask)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Control\\Session Manager\\Memory Management",
+    "values": [
+     {
+      "name": "FeatureSettingsOverride",
+      "vtype": "DWORD",
+      "value": 3
+     },
+     {
+      "name": "FeatureSettingsOverrideMask",
+      "vtype": "DWORD",
+      "value": 3
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.fps.disable_fullscreen_optimizations",
+   "group": "gpu",
+   "name": "禁用全屏优化",
+   "desc": "强制 GameConfigStore 中 FSE 行为为传统独占模式，避免 Win10 全屏优化带来的输入延迟。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "显卡",
+   "target": "HKCU\\System\\GameConfigStore  (GameDVR_FSEBehavior, GameDVR_FSEBehaviorMode)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "System\\GameConfigStore",
+    "values": [
+     {
+      "name": "GameDVR_FSEBehavior",
+      "vtype": "DWORD",
+      "value": 2
+     },
+     {
+      "name": "GameDVR_FSEBehaviorMode",
+      "vtype": "DWORD",
+      "value": 2
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.gpu.disable_dwm_animations",
+   "group": "gpu",
+   "name": "禁用 DWM 动画",
+   "desc": "将 DWM 的 EnableAeroPeek/AlwaysHibernateThumbnails=0，关闭桌面窗口管理器动画，减少 GPU 渲染开销。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": false,
+   "tag": "显卡",
+   "target": "HKCU\\SOFTWARE\\Microsoft\\Windows\\DWM  (EnableAeroPeek, AlwaysHibernateThumbnails)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "SOFTWARE\\Microsoft\\Windows\\DWM",
+    "values": [
+     {
+      "name": "EnableAeroPeek",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "AlwaysHibernateThumbnails",
+      "vtype": "DWORD",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.peripheral.mouse_precision",
+   "group": "periph",
+   "name": "提升鼠标精度",
+   "desc": "关闭指针加速并统一 PointerPrecision，保持 1:1 轨迹。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "外设",
+   "target": "HKCU\\Control Panel\\Mouse  (MouseSpeed, MouseThreshold1, MouseThreshold2)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "Control Panel\\Mouse",
+    "values": [
+     {
+      "name": "MouseSpeed",
+      "vtype": "STRING",
+      "value": "0"
+     },
+     {
+      "name": "MouseThreshold1",
+      "vtype": "STRING",
+      "value": "0"
+     },
+     {
+      "name": "MouseThreshold2",
+      "vtype": "STRING",
+      "value": "0"
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.peripheral.keyboard_response",
+   "group": "periph",
+   "name": "优化键盘响应",
+   "desc": "KeyboardDelay=0、KeyboardSpeed=31，获得最快输入反馈。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "外设",
+   "target": "HKCU\\Control Panel\\Keyboard  (KeyboardDelay, KeyboardSpeed)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "Control Panel\\Keyboard",
+    "values": [
+     {
+      "name": "KeyboardDelay",
+      "vtype": "STRING",
+      "value": "0"
+     },
+     {
+      "name": "KeyboardSpeed",
+      "vtype": "STRING",
+      "value": "31"
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.accessibility.disable_sticky_keys",
+   "group": "periph",
+   "name": "禁用粘滞键",
+   "desc": "禁用粘滞键热键，避免连按 Shift 时弹出系统提示。",
+   "kind": "pending",
+   "risk": "low",
+   "admin": true,
+   "tag": "外设",
+   "target": "OrchestratedAccessibilityOperation",
+   "spec": null,
+   "why": "需要系统辅助功能接口，标志位组合复杂，暂不开放"
+  },
+  {
+   "id": "yq.accessibility.disable_filter_keys",
+   "group": "periph",
+   "name": "禁用筛选键",
+   "desc": "禁用筛选键热键，避免长按右 Shift 时弹出系统提示。",
+   "kind": "pending",
+   "risk": "low",
+   "admin": true,
+   "tag": "外设",
+   "target": "OrchestratedAccessibilityOperation",
+   "spec": null,
+   "why": "需要系统辅助功能接口，标志位组合复杂，暂不开放"
+  },
+  {
+   "id": "yq.accessibility.disable_toggle_keys",
+   "group": "periph",
+   "name": "禁用切换键",
+   "desc": "禁用切换键热键，避免按 Num Lock 等键时出现提示音。",
+   "kind": "pending",
+   "risk": "low",
+   "admin": true,
+   "tag": "外设",
+   "target": "OrchestratedAccessibilityOperation",
+   "spec": null,
+   "why": "需要系统辅助功能接口，标志位组合复杂，暂不开放"
+  },
+  {
+   "id": "yq.input.disable_touch_feedback",
+   "group": "periph",
+   "name": "禁用触控反馈",
+   "desc": "ContactVisualization/GestureVisualization=0，关闭触控视觉反馈。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": false,
+   "tag": "外设",
+   "target": "HKCU\\Control Panel\\Cursors  (ContactVisualization, GestureVisualization)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKCU",
+    "key": "Control Panel\\Cursors",
+    "values": [
+     {
+      "name": "ContactVisualization",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "GestureVisualization",
+      "vtype": "DWORD",
+      "value": 0
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.memory.disable_compression",
+   "group": "memory",
+   "name": "关闭内存压缩",
+   "desc": "通过 MMAgent 关闭内存压缩，减少 CPU 解压开销，适合大内存用户。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "内存",
+   "target": "MMAgent.MemoryCompression",
+   "spec": {
+    "type": "mmagent",
+    "on": 0
+   }
+  },
+  {
+   "id": "yq.audio.optimize_sample_rate",
+   "group": "audio",
+   "name": "优化音频采样率",
+   "desc": "设置 Audio 多媒体任务 Priority=6、Affinity=0、Scheduling Category/SFIO Priority=High，降低音频处理延迟。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "音频",
+   "target": "HKLM\\SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Audio  (Priority, Affinity, Scheduling Category, SFIO Priority)",
+   "spec": {
+    "type": "regset",
+    "hive": "HKLM",
+    "key": "SOFTWARE\\Microsoft\\Windows NT\\CurrentVersion\\Multimedia\\SystemProfile\\Tasks\\Audio",
+    "values": [
+     {
+      "name": "Priority",
+      "vtype": "DWORD",
+      "value": 6
+     },
+     {
+      "name": "Affinity",
+      "vtype": "DWORD",
+      "value": 0
+     },
+     {
+      "name": "Scheduling Category",
+      "vtype": "STRING",
+      "value": "High"
+     },
+     {
+      "name": "SFIO Priority",
+      "vtype": "STRING",
+      "value": "High"
+     }
+    ]
+   }
+  },
+  {
+   "id": "yq.cpu.disable_dynamic_tick",
+   "group": "cpu",
+   "name": "禁用 Dynamic Tick",
+   "desc": "写入 bcdedit /set disabledynamictick yes，避免时钟休眠导致的帧时间波动。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "待接入",
+   "spec": null,
+   "why": "要改 BCD 启动项，改错会导致无法开机，暂不开放"
+  },
+  {
+   "id": "yq.cpu.configure_hpet",
+   "group": "cpu",
+   "name": "重新配置 HPET",
+   "desc": "移除 useplatformclock 绑定，避免强制 HPET 带来的高延迟。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "待接入",
+   "spec": null,
+   "why": "要改 BCD 启动项，改错会导致无法开机，暂不开放"
+  },
+  {
+   "id": "yq.cpu.use_platform_tick",
+   "group": "cpu",
+   "name": "启用平台计时器",
+   "desc": "写入 bcdedit /set useplatformtick yes，使用 TSC 替代 HPET，AMD CPU 推荐，可解决随机抽帧。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "待接入",
+   "spec": null,
+   "why": "要改 BCD 启动项，改错会导致无法开机，暂不开放"
+  },
+  {
+   "id": "yq.cpu.force_high_timer_resolution",
+   "group": "cpu",
+   "name": "不允许全局锁定计时器精度",
+   "desc": "系统计时器请求是进程间聚合状态，无法以单个快照证明全局恢复，当前只允许诊断。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "待接入",
+   "spec": null,
+   "why": "要改 BCD 启动项，改错会导致无法开机，暂不开放"
+  },
+  {
+   "id": "yq.basic.disable_security_center",
+   "group": "perf",
+   "name": "禁用安全中心服务",
+   "desc": "停止并禁用 SecurityHealthService，关闭 Windows 安全中心的状态监控。",
+   "kind": "toggle",
+   "risk": "high",
+   "admin": true,
+   "tag": "性能",
+   "target": "服务 SecurityHealthService",
+   "spec": {
+    "type": "service",
+    "names": [
+     "SecurityHealthService"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.basic.disable_firewall",
+   "group": "perf",
+   "name": "禁用 Windows 防火墙",
+   "desc": "停止并禁用 MpsSvc 防火墙服务，关闭所有网络流量过滤。",
+   "kind": "toggle",
+   "risk": "high",
+   "admin": true,
+   "tag": "性能",
+   "target": "服务 MpsSvc",
+   "spec": {
+    "type": "service",
+    "names": [
+     "MpsSvc"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.security.disable_dep",
+   "group": "privacy",
+   "name": "不允许禁用 DEP 数据执行保护",
+   "desc": "DEP 通过 BCD 启动配置控制，本版本不提供 bcdedit 直写入口；请通过系统安全设置调整。",
+   "kind": "pending",
+   "risk": "high",
+   "admin": true,
+   "tag": "隐私防护",
+   "target": "待接入",
+   "spec": null,
+   "why": "上游用专用执行器实现，尚未接入"
+  },
+  {
+   "id": "yq.adjustments.network_throttling_index",
+   "group": "perf",
+   "name": "禁用网络节流索引",
+   "desc": "将 NetworkThrottlingIndex 设为 0xFFFFFFFF，使多媒体调度永不限制带宽。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "待接入",
+   "spec": null,
+   "why": "上游用专用执行器实现，尚未接入"
+  },
+  {
+   "id": "yq.network.disable_tcp_auto_tuning",
+   "group": "network",
+   "name": "锁定 TCP 自动调优",
+   "desc": "将 TcpAutotuningLevel=0，强制禁用接收窗口自动调优以获得确定性延迟。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\TcpAutotuningLevel",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "TcpAutotuningLevel",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.disable_ecn_capability",
+   "group": "network",
+   "name": "禁用 ECN",
+   "desc": "将 ECNCapability=0，关闭显式拥塞通知以避免固件兼容性问题。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\ECNCapability",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "ECNCapability",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.disable_rsc",
+   "group": "network",
+   "name": "禁用 RSC",
+   "desc": "将 EnableRSC=0，停止接收段合并，使数据包立即到达协议栈。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\EnableRSC",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "EnableRSC",
+    "vtype": "DWORD",
+    "on": 0,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.optimize_rss",
+   "group": "network",
+   "name": "启用 RSS",
+   "desc": "将 EnableRSS=1，启用接收端缩放，使网卡工作负载分散到多个 CPU 核心。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\EnableRSS",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "EnableRSS",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.enable_tcp1323",
+   "group": "network",
+   "name": "启用 RFC1323 时间戳",
+   "desc": "将 Tcp1323Opts=1，保持时间戳支持以维持长距离延迟可见性。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\Tcp1323Opts",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "Tcp1323Opts",
+    "vtype": "DWORD",
+    "on": 1,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.increase_max_user_port",
+   "group": "network",
+   "name": "提高最大用户端口",
+   "desc": "将 MaxUserPort 设置为 65534；该入口需要重启后由 TCP/IP 栈重新读取。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\MaxUserPort",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "MaxUserPort",
+    "vtype": "DWORD",
+    "on": 65534,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.optimize_tcp_timed_wait",
+   "group": "network",
+   "name": "缩短 TIME_WAIT",
+   "desc": "将 TcpTimedWaitDelay 设置为 30 秒；该入口需要重启后由 TCP/IP 栈重新读取。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\TcpTimedWaitDelay",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "TcpTimedWaitDelay",
+    "vtype": "DWORD",
+    "on": 30,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.optimize_ttl",
+   "group": "network",
+   "name": "规范化默认 TTL",
+   "desc": "将 DefaultTTL 设置为 64 以匹配主流路由器并减少奇怪的跳数。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\DefaultTTL",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "DefaultTTL",
+    "vtype": "DWORD",
+    "on": 64,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.network.optimize_tcp_max_dup_acks",
+   "group": "network",
+   "name": "调整 TcpMaxDupAcks",
+   "desc": "使用 TcpMaxDupAcks = 2，使重传在有损 Wi-Fi 上更快发生。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "网络",
+   "target": "HKLM\\SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters\\TcpMaxDupAcks",
+   "spec": {
+    "type": "reg",
+    "hive": "HKLM",
+    "key": "SYSTEM\\CurrentControlSet\\Services\\Tcpip\\Parameters",
+    "name": "TcpMaxDupAcks",
+    "vtype": "DWORD",
+    "on": 2,
+    "off": null
+   }
+  },
+  {
+   "id": "yq.power.disable_usb_suspend",
+   "group": "perf",
+   "name": "禁用 USB 选择性暂停",
+   "desc": "防止 USB 设备休眠导致鼠标键盘延迟。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 2A737441 / 48E6B7A6 = 0",
+   "spec": {
+    "type": "power",
+    "subgroup": "2A737441-1930-4402-8D77-B2BEBBA308A3",
+    "setting": "48E6B7A6-50F5-4782-A5D4-53BB8F07E226",
+    "value": 0
+   }
+  },
+  {
+   "id": "yq.power.disable_aspm",
+   "group": "perf",
+   "name": "禁用 PCIe 节能 (ASPM)",
+   "desc": "关闭 PCIe Link State Power Management。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 501a4d13 / ee12f906 = 0",
+   "spec": {
+    "type": "power",
+    "subgroup": "501a4d13-42af-4429-9fd1-a8218c268e20",
+    "setting": "ee12f906-d166-11d0-87cf-00a0c9110001",
+    "value": 0
+   }
+  },
+  {
+   "id": "yq.power.processor_min_state_100",
+   "group": "perf",
+   "name": "处理器最小状态 100%",
+   "desc": "请求处理器始终保持高性能状态。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 893DEE8E = 100",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "893DEE8E-2BEF-41E0-89C6-B55D0929964C",
+    "value": 100
+   }
+  },
+  {
+   "id": "yq.power.perf_increase_threshold",
+   "group": "perf",
+   "name": "处理器性能提升阈值",
+   "desc": "请求更快触发处理器性能提升。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 06cadf0e = 1",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "06cadf0e-64ed-448a-8927-ce7bf90eb35d",
+    "value": 1
+   }
+  },
+  {
+   "id": "yq.power.idle_demote_threshold",
+   "group": "perf",
+   "name": "处理器闲置降级阈值",
+   "desc": "请求延后处理器性能降级。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 4b92d758 = 100",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "4b92d758-5a24-4851-a470-815d78aee119",
+    "value": 100
+   }
+  },
+  {
+   "id": "yq.power.perf_time_check",
+   "group": "perf",
+   "name": "处理器性能时间检查间隔",
+   "desc": "请求改变处理器性能检查周期。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 4d2b0152 = 5000",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "4d2b0152-7d5c-498b-88e2-34345392a2c5",
+    "value": 5000
+   }
+  },
+  {
+   "id": "yq.power.class1_efficiency_threshold",
+   "group": "perf",
+   "name": "第一类处理器效率阈值",
+   "desc": "请求调整混合架构性能核效率阈值。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 36687f9e = 1",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "36687f9e-e3a5-4dbf-b1dc-15eb381c6863",
+    "value": 1
+   }
+  },
+  {
+   "id": "yq.power.class1_perf_level",
+   "group": "perf",
+   "name": "第一类处理器性能级别",
+   "desc": "请求调整混合架构性能核性能级别。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 619b7505 = 100",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "619b7505-003b-4e82-b7a6-4dd29c300971",
+    "value": 100
+   }
+  },
+  {
+   "id": "yq.power.disable_throttle",
+   "group": "perf",
+   "name": "禁止 CPU 节流",
+   "desc": "请求关闭处理器电源节流策略。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 3b04d4fd = 0",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "3b04d4fd-1cc7-4f23-ab1c-d1337819c4bb",
+    "value": 0
+   }
+  },
+  {
+   "id": "yq.power.hetero_thread_scheduling",
+   "group": "perf",
+   "name": "异类线程调度策略",
+   "desc": "请求改变混合架构处理器的电源调度策略。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "性能",
+   "target": "powercfg 54533251 / 93b8b6dc = 2",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "93b8b6dc-0698-4d1c-9ee4-0644e900c85d",
+    "value": 2
+   }
+  },
+  {
+   "id": "yq.cleanup.gpu_cache",
+   "group": "misc",
+   "name": "清理 GPU 着色器缓存",
+   "desc": "清理 NVIDIA/AMD/D3DSCache 着色器缓存目录。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cleanup.prefetch_files",
+   "group": "misc",
+   "name": "清理 Prefetch 文件",
+   "desc": "清理 Windows Prefetch 跟踪文件。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cleanup.system_temp",
+   "group": "misc",
+   "name": "清理系统临时文件",
+   "desc": "清理 Windows\\\\Temp 目录。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cleanup.user_temp",
+   "group": "misc",
+   "name": "清理用户临时文件",
+   "desc": "清理用户 %TEMP% 目录。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cleanup.thumbnail_cache",
+   "group": "misc",
+   "name": "清理缩略图缓存",
+   "desc": "清理 Explorer thumbcache/iconcache 数据库。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cleanup.windows_update_cache",
+   "group": "misc",
+   "name": "清理更新下载缓存",
+   "desc": "清理 SoftwareDistribution\\\\Download 缓存。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cleanup.windows_logs",
+   "group": "misc",
+   "name": "系统日志清理旧入口不可用",
+   "desc": "诊断日志不会由旧目录永久删除。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cleanup.recycle_bin",
+   "group": "misc",
+   "name": "回收站永久清空被阻断",
+   "desc": "本产品不通过优化目录永久删除回收站内容。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "已由「清理」页的等价功能覆盖，不重复提供"
+  },
+  {
+   "id": "yq.cpu.disable_core_parking",
+   "group": "cpu",
+   "name": "让所有 CPU 核心保持可用",
+   "desc": "游戏需要更多核心时，不必等待核心从省电状态唤醒。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "powercfg 54533251 / 0CC5B647 = 100",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "0CC5B647-C1DF-4637-891A-DEC35C318583",
+    "value": 100
+   }
+  },
+  {
+   "id": "yq.cpu.processor_boost_mode",
+   "group": "cpu",
+   "name": "让 CPU 更积极地加速",
+   "desc": "负载升高时更快提高频率。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "powercfg 54533251 / BE337238 = 2",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "BE337238-0D82-4146-A960-4F3749D470C7",
+    "value": 2
+   }
+  },
+  {
+   "id": "yq.cpu.disable_boost_mode",
+   "group": "cpu",
+   "name": "限制 CPU 自动加速",
+   "desc": "降低发热和噪声，但也会降低最高性能。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "powercfg 54533251 / BE337238 = 0",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "BE337238-0D82-4146-A960-4F3749D470C7",
+    "value": 0
+   }
+  },
+  {
+   "id": "yq.cpu.disable_pstates",
+   "group": "cpu",
+   "name": "禁用 CPU P-States",
+   "desc": "请求固定处理器最小/最大性能状态。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "powercfg 54533251 / 893DEE8E = 100",
+   "spec": {
+    "type": "power",
+    "subgroup": "54533251-82BE-4824-96C1-47B60B740D00",
+    "setting": "893DEE8E-2BEF-41E0-89C6-B55D0929964C",
+    "value": 100
+   }
+  },
+  {
+   "id": "yq.cpu.disable_tsc_sync",
+   "group": "cpu",
+   "name": "禁用 TSC 同步",
+   "desc": "写入 bcdedit /set tscsyncpolicy Legacy，某些多核场景下可提升性能。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "CPU",
+   "target": "待接入",
+   "spec": null,
+   "why": "要改 BCD 启动项，改错会导致无法开机，暂不开放"
+  },
+  {
+   "id": "yq.intel.disable_cstates",
+   "group": "misc",
+   "name": "禁用 CPU C-States",
+   "desc": "请求禁用处理器空闲状态。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "上游用专用执行器实现，尚未接入"
+  },
+  {
+   "id": "yq.gpu.disable_xbox_game_monitoring",
+   "group": "gpu",
+   "name": "禁用 Xbox 游戏监控",
+   "desc": "关闭 Xbox Game Monitoring 服务（xbgm），减少后台资源占用。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "显卡",
+   "target": "服务 xbgm",
+   "spec": {
+    "type": "service",
+    "names": [
+     "xbgm"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.device.disable_system_timer",
+   "group": "misc",
+   "name": "禁用 System Timer",
+   "desc": "禁用系统计时器设备，AMD CPU 推荐，可降低 DPC 延迟。Intel CPU 需谨慎。【优点】可能降低 DPC 延迟，减少输入延迟。【缺点】Intel CPU 可能出现时间不准或系统不稳定。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "需要设备管理接口（pnputil），按机型差异大，暂不开放"
+  },
+  {
+   "id": "yq.device.disable_umbus",
+   "group": "misc",
+   "name": "禁用 UMBus Root Bus Enumerator",
+   "desc": "禁用 UMBus 根总线枚举器，减少系统开销和中断。【优点】减少系统中断，可能降低延迟。【缺点】某些 USB 设备可能无法正常工作。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "需要设备管理接口（pnputil），按机型差异大，暂不开放"
+  },
+  {
+   "id": "yq.device.disable_composite_bus",
+   "group": "misc",
+   "name": "禁用 Composite Bus Enumerator",
+   "desc": "禁用复合总线枚举器，减少 USB 相关中断，降低输入延迟。【优点】减少 USB 中断开销。【缺点】复合 USB 设备（如带音频的摄像头）可能无法使用。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "需要设备管理接口（pnputil），按机型差异大，暂不开放"
+  },
+  {
+   "id": "yq.device.disable_hpet_device",
+   "group": "misc",
+   "name": "禁用 HPET 设备",
+   "desc": "在设备管理器级别禁用高精度事件计时器。AMD CPU 推荐，Intel CPU 不建议。【优点】AMD 平台可能显著降低延迟。【缺点】⚠️ 高风险：Intel 平台可能导致系统不稳定或蓝屏。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "需要设备管理接口（pnputil），按机型差异大，暂不开放"
+  },
+  {
+   "id": "yq.tasks.disable_app_experience",
+   "group": "task",
+   "name": "禁用 Application Experience",
+   "desc": "关闭 Microsoft Compatibility Appraiser，阻止兼容性评估占用。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\Application Experience\\Microsoft Compatibility Appraiser"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_auto_proxy_detection",
+   "group": "task",
+   "name": "禁用自动代理检测",
+   "desc": "关闭 Autochk\\Proxy 计划任务，避免多余网络探测。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\Autochk\\Proxy",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\Autochk\\Proxy"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_ceip",
+   "group": "task",
+   "name": "禁用 CEIP 计划任务",
+   "desc": "停止 Customer Experience Improvement Program\\Consolidator。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\Customer Experience Improvement Program\\Consolidator"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_cleanup_tasks",
+   "group": "task",
+   "name": "禁用组件维护任务",
+   "desc": "关闭 Servicing\\StartComponentCleanup，避免维护任务在游戏时段占用磁盘。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\Servicing\\StartComponentCleanup",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\Servicing\\StartComponentCleanup"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_defragmentation",
+   "group": "task",
+   "name": "禁用磁盘碎片整理",
+   "desc": "阻止 ScheduledDefrag 在高峰期运行。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\Defrag\\ScheduledDefrag",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\Defrag\\ScheduledDefrag"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_disk_diagnostic",
+   "group": "task",
+   "name": "禁用磁盘诊断",
+   "desc": "关闭 DiskDiagnosticDataCollector，降低磁盘扫描干扰。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\DiskDiagnostic\\Microsoft-Windows-DiskDiagnosticDataCollector"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_ms_store_update_tasks",
+   "group": "task",
+   "name": "禁用商店自动更新",
+   "desc": "关闭 WindowsUpdate\\Automatic App Update。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\WindowsUpdate\\Automatic App Update",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\WindowsUpdate\\Automatic App Update"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_ms_sync_tasks",
+   "group": "task",
+   "name": "禁用 Sync Center",
+   "desc": "停用 SyncCenterScheduledSync，避免后台同步。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\SyncCenter\\SyncCenterScheduledSync",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\SyncCenter\\SyncCenterScheduledSync"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_notification_tasks",
+   "group": "task",
+   "name": "禁用备份通知",
+   "desc": "关闭 WindowsBackup\\ConfigNotification，消除备份提醒。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\WindowsBackup\\ConfigNotification",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\WindowsBackup\\ConfigNotification"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_policy_updates",
+   "group": "task",
+   "name": "禁用更新策略任务",
+   "desc": "关闭 WindowsUpdate\\Scheduled Start，避免策略刷新在游戏时段抢占资源。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\WindowsUpdate\\Scheduled Start"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_remote_management",
+   "group": "task",
+   "name": "禁用远程协助计划",
+   "desc": "关闭 RemoteAssistanceTask，防止远程协助后台。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\RemoteAssistance\\RemoteAssistanceTask",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\RemoteAssistance\\RemoteAssistanceTask"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_store_features",
+   "group": "task",
+   "name": "禁用 Store Feature Installers",
+   "desc": "阻断 CloudExperienceHost\\CreateObjectTask。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\CloudExperienceHost\\CreateObjectTask",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\CloudExperienceHost\\CreateObjectTask"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_sync_features",
+   "group": "task",
+   "name": "禁用 SettingSync",
+   "desc": "关闭 SettingSync\\BackgroundUploadTask，避免同步占用。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\SettingSync\\BackgroundUploadTask",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\SettingSync\\BackgroundUploadTask"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_windows_update",
+   "group": "task",
+   "name": "禁用 Windows Update 扫描",
+   "desc": "关闭 UpdateOrchestrator\\Schedule Scan，避免更新扫描在游戏时段占用资源。",
+   "kind": "toggle",
+   "risk": "high",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_xbox_features",
+   "group": "task",
+   "name": "禁用 Xbox 功能任务",
+   "desc": "停止 XblGameSaveTask，减少云同步触发。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\XblGameSave\\XblGameSaveTask",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\XblGameSave\\XblGameSaveTask"
+   }
+  },
+  {
+   "id": "yq.tasks.disable_xbox_tasks",
+   "group": "task",
+   "name": "禁用 Xbox 相关登陆任务",
+   "desc": "关闭 XblGameSaveTaskLogon，防止开机自启。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "任务调度",
+   "target": "\\Microsoft\\XblGameSave\\XblGameSaveTaskLogon",
+   "spec": {
+    "type": "task",
+    "path": "\\Microsoft\\XblGameSave\\XblGameSaveTaskLogon"
+   }
+  },
+  {
+   "id": "yq.service.disable_spooler",
+   "group": "service",
+   "name": "停止 Print Spooler",
+   "desc": "在无打印需求时禁用 Spooler，避免快捷键错误触发。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 Spooler",
+   "spec": {
+    "type": "service",
+    "names": [
+     "Spooler"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.service.disable_wsearch",
+   "group": "service",
+   "name": "停用 Windows Search",
+   "desc": "WSearch 服务停用后释放磁盘与内存资源。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 WSearch",
+   "spec": {
+    "type": "service",
+    "names": [
+     "WSearch"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.service.disable_telemetry",
+   "group": "service",
+   "name": "禁用核心遥测服务 (DiagTrack)",
+   "desc": "关闭 Connected User Experiences and Telemetry。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 DiagTrack",
+   "spec": {
+    "type": "service",
+    "names": [
+     "DiagTrack"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.services.disable_diagtrack",
+   "group": "service",
+   "name": "额外关闭共享遥测服务",
+   "desc": "禁用 dmwappushservice 推送遥测服务，阻断残余上传。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 dmwappushservice",
+   "spec": {
+    "type": "service",
+    "names": [
+     "dmwappushservice"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.services.disable_fax",
+   "group": "service",
+   "name": "禁用 Fax 服务",
+   "desc": "桌面场景极少使用传真，可关闭以减轻占用。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 Fax",
+   "spec": {
+    "type": "service",
+    "names": [
+     "Fax"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.services.disable_maps_broker",
+   "group": "service",
+   "name": "停用 MapsBroker",
+   "desc": "阻止离线地图托管服务常驻后台。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 MapsBroker",
+   "spec": {
+    "type": "service",
+    "names": [
+     "MapsBroker"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.services.disable_remote_registry",
+   "group": "service",
+   "name": "禁用 Remote Registry",
+   "desc": "避免被远程修改注册表，提升安全性。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 RemoteRegistry",
+   "spec": {
+    "type": "service",
+    "names": [
+     "RemoteRegistry"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.services.disable_wallet_service",
+   "group": "service",
+   "name": "关闭 WalletService",
+   "desc": "在非 UWP 支付场景下禁用 WalletService，减少启动项。",
+   "kind": "toggle",
+   "risk": "low",
+   "admin": true,
+   "tag": "服务",
+   "target": "服务 WalletService",
+   "spec": {
+    "type": "service",
+    "names": [
+     "WalletService"
+    ],
+    "off": "Manual"
+   }
+  },
+  {
+   "id": "yq.services.enable_high_performance_mode",
+   "group": "misc",
+   "name": "激活高性能电源计划",
+   "desc": "仅在传统交流供电桌面、无 OEM/组织策略限制且 Windows 实际枚举到内置高性能计划时切换；其它环境仅返回系统设置引导或不可用状态。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "上游用专用执行器实现，尚未接入"
+  },
+  {
+   "id": "yq.composition.missing",
+   "group": "misc",
+   "name": "该迁移能力必须通过应用依赖注入容器执行。",
+   "desc": "迁移能力未连接到应用依赖注入容器。",
+   "kind": "pending",
+   "risk": "mid",
+   "admin": true,
+   "tag": "其它",
+   "target": "待接入",
+   "spec": null,
+   "why": "上游用专用执行器实现，尚未接入"
+  },
+  {
+   "id": "yq.memory.disable_superfetch",
+   "group": "memory",
+   "name": "禁用 SuperFetch",
+   "desc": "关闭 SysMain 服务的预取功能，减少后台磁盘活动，适合 SSD 用户。",
+   "kind": "toggle",
+   "risk": "mid",
+   "admin": true,
+   "tag": "内存",
+   "target": "服务 SysMain",
+   "spec": {
+    "type": "service",
+    "names": [
+     "SysMain"
+    ],
+    "off": "Manual"
+   }
+  }
+ ]
+}
