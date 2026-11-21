@@ -6,5 +6,6 @@
 | Tuba Toolbox | 工具名和相对路径索引的参考来源之一。 | [zhangqinghao0811/TubaToolbox](https://github.com/zhangqinghao0811/TubaToolbox#license)。上游 README 标注 MIT。公开版提供生成后的本地工具索引。 |
 | Electron 与 Chromium | Windows 桌面运行时，随免安装 ZIP 分发。 | [Electron](https://github.com/electron/electron)。许可见下载包内的 `LICENSE.electron.txt` 和 `LICENSES.chromium.html`。 |
 | LibreHardwareMonitor | 可选的硬件传感器接口，由用户从上游获取兼容的 DLL。 | [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor)，其库及各依赖沿用各自的许可。 |
+| PawnIO | 可选的硬件驱动。安装入口按需下载官方签名安装器。 | [PawnIO 2.2.0](https://github.com/namazso/PawnIO.Setup/releases/tag/2.2.0)。驱动及安装器由上游分发。 |
 
 工具索引仅登记程序名称、分类和文件位置。第三方工具及硬件传感器 DLL 需从各自来源另行获取。

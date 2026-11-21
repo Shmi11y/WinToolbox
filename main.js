@@ -1,4 +1,4 @@
-const { app, BrowserWindow, ipcMain, shell, nativeImage, dialog, Tray, Menu, nativeTheme } = require('electron');
+const { app, BrowserWindow, ipcMain, shell, nativeImage, dialog, Tray, Menu, nativeTheme, net } = require('electron');
 const fs = require('fs');
 const path = require('path');
 const os = require('os');
@@ -16,6 +16,7 @@ let TUBA_ROOT = CONF.tubaRoot;   // 稍后由 store / 首次引导覆盖
 
 app.setPath('userData', path.join(app.getPath('appData'), process.env.TB_UD || 'tuba-toolbox-next'));
 const USER_DIR = app.getPath('userData');
+const TAKEOVER_FILE = path.join(USER_DIR, 'takeover.txt');   // 提权实例接管旧实例的握手文件
 const ERR_LOG = path.join(USER_DIR, 'error.log');
 
 // 所有静默失败都往这里写，出问题能查
@@ -462,6 +463,7 @@ function ensureScripts() {
 ensureScripts();
 
 const SENSOR_DIR = path.join(USER_DIR, 'sensors');
+const LHM_LIB = path.join(SENSOR_DIR, 'LibreHardwareMonitorLib.dll');
 function ensureSensors() {
   const src = path.join(ROOT, 'data', 'sensors');
   if (!fs.existsSync(src)) return false;
@@ -510,6 +512,17 @@ function runPS(name, args = [], timeout = 120000) {
 
 /* ---------------- 管理员状态 ---------------- */
 let IS_ADMIN = false;
+function readCoreIsolation() {
+  try {
+    const out = require('child_process').execFileSync('reg', [
+      'query',
+      'HKLM\\SYSTEM\\CurrentControlSet\\Control\\DeviceGuard\\Scenarios\\HypervisorEnforcedCodeIntegrity',
+      '/v', 'Enabled'
+    ], { windowsHide: true, encoding: 'utf8', timeout: 3000 });
+    return /0x1/.test(out);
+  } catch (e) { return null; }   // 读不到就返回未知，不误导
+}
+
 function detectAdmin() {
   return new Promise(resolve => {
     execFile('whoami', ['/groups'], { windowsHide: true }, (err, out) => {
@@ -639,10 +652,12 @@ ipcMain.handle('sysinfo', async (e, force) => {
   if (!force) {
     const adminNow = await detectAdmin();
     // 提权状态变了（比如刚从「以管理员重启」回来）就作废缓存，否则温度永远是旧的「不可用」
-    const samePrivilege = cached && cached.admin === adminNow;
+    // 老缓存没有 coreIsolation 字段，一并作废，避免温度提示判断错
+    const samePrivilege = cached && cached.admin === adminNow && cached.coreIsolation !== undefined;
     if (cached && cached.ok && cached.ts && samePrivilege &&
         Date.now() - new Date(cached.ts).getTime() < 6 * 3600e3) {
       cached.cached = true;
+      cached.sensorLib = exists(LHM_LIB);
       return cached;
     }
   }
@@ -651,16 +666,17 @@ ipcMain.handle('sysinfo', async (e, force) => {
   // 非管理员读不到 CPU 核心温度，传感器增强只在提权后才有意义，避免白白多等几秒
   const [r, snPre] = await Promise.all([
     runPS('sysinfo.ps1', [], 60000),
-    admin ? runPS('sensors.ps1', ['-Dir', SENSOR_DIR], 45000) : Promise.resolve(null)
+    admin && exists(LHM_LIB) ? runPS('sensors.ps1', ['-Dir', SENSOR_DIR], 45000) : Promise.resolve(null)
   ]);
   r.ms = Date.now() - t0;
   r.admin = admin;
+  r.sensorLib = exists(LHM_LIB);
 
   // 增强传感器（LibreHardwareMonitor，需管理员才能读到 CPU 核心温度）
   try {
   if (r.ok && r.temps) {
     const sn = snPre;
-    if (sn.ok && sn.sensors) {
+    if (sn && sn.ok && sn.sensors) {
       const pickTemp = (re, hwRe) => {
         const list = sn.sensors.filter(x => x.type === 'Temperature' && x.value > 0 &&
           re.test(x.name) && (!hwRe || hwRe.test(x.hw)));
@@ -1382,6 +1398,88 @@ ipcMain.handle('setup:reset', () => {
   return { ok: true, root: TUBA_ROOT };
 });
 
+
+/* ---------------- PawnIO：内核隔离下读取 CPU 温度的签名驱动 ---------------- */
+const PAWNIO_URL = 'https://github.com/namazso/PawnIO.Setup/releases/download/2.2.0/PawnIO_setup.exe';
+const PAWNIO_SHA256 = '1f519a22e47187f70a1379a48ca604981c4fcf694f4e65b734aaa74a9fba3032';
+const PI_LIB_PF = 'C:\\Program Files\\PawnIO\\PawnIOLib.dll';
+const PI_LIB_APP = path.join(SENSOR_DIR, 'PawnIOLib.dll');
+let pawnioInstalling = false;
+
+function pawnioInstalled() {
+  try { return fs.existsSync(PI_LIB_PF); } catch (e) { return false; }
+}
+
+function pawnioStatus() {
+  return {
+    installed: pawnioInstalled(),
+    libCopied: fs.existsSync(PI_LIB_APP),
+    sensorLib: exists(LHM_LIB)
+  };
+}
+
+function sleep(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+function matchesPawnioRelease(bytes) {
+  return crypto.createHash('sha256').update(bytes).digest('hex') === PAWNIO_SHA256;
+}
+
+function verifyPawnioSigner(file) {
+  // PowerShell 7 配置的模块路径不能用于加载 Windows PowerShell 的签名模块。
+  const env = Object.fromEntries(Object.entries(process.env).filter(([name]) => name.toLowerCase() !== 'psmodulepath'));
+  return new Promise((resolve) => {
+    execFile('powershell', ['-NoProfile', '-Command',
+      "$ErrorActionPreference='Stop'; $s=Get-AuthenticodeSignature -LiteralPath '" + file.replace(/'/g, "''") + "'; " +
+      "if ($s.Status -eq 'Valid' -and $s.SignerCertificate.Subject -match '(?:^|,\\s*)CN=namazso\\.eu(?:,|$)') { 'OK' }"
+    ], { env, windowsHide: true, timeout: 30000 }, (err, out) => resolve(!err && String(out).trim() === 'OK'));
+  });
+}
+
+ipcMain.handle('sensors:pawnio', () => pawnioStatus());
+
+ipcMain.handle('sensors:pawnio-install', async (ev) => {
+  if (!exists(LHM_LIB)) return { ok: false, error: '请先按 README 配置 LibreHardwareMonitor 传感器库。' };
+  if (pawnioInstalling) return { ok: false, error: 'PawnIO 安装正在进行。' };
+  pawnioInstalling = true;
+  const send = msg => { if (!ev.sender.isDestroyed()) ev.sender.send('pawnio:progress', msg); };
+  try {
+    const already = pawnioInstalled();
+    if (!already) {
+      const runDir = path.join(USER_DIR, 'pawnio');
+      fs.mkdirSync(runDir, { recursive: true });
+      const setup = path.join(runDir, 'PawnIO_setup.exe');
+      if (!exists(setup) || !matchesPawnioRelease(fs.readFileSync(setup))) {
+        send('正在从官方 GitHub 下载 PawnIO…');
+        const response = await net.fetch(PAWNIO_URL, { signal: AbortSignal.timeout(90000) });
+        if (!response.ok) return { ok: false, error: `下载安装包失败：HTTP ${response.status}` };
+        const bytes = Buffer.from(await response.arrayBuffer());
+        if (!matchesPawnioRelease(bytes)) return { ok: false, error: '安装包 SHA-256 校验未通过。' };
+        fs.writeFileSync(setup, bytes);
+      }
+      send('校验签名…');
+      if (!(await verifyPawnioSigner(setup))) return { ok: false, error: '安装包签名校验未通过。' };
+      send('请在弹出的 PawnIO 窗口中确认安装。');
+      await new Promise((resolve, reject) => {
+        execFile('powershell', ['-NoProfile', '-Command',
+          "$ErrorActionPreference='Stop'; Start-Process -Verb RunAs -FilePath '" + setup.replace(/'/g, "''") + "'"
+        ], { windowsHide: true, timeout: 90000 }, error => error ? reject(error) : resolve());
+      });
+      for (let i = 0; i < 90 && !pawnioInstalled(); i++) await sleep(2000);
+    }
+    if (pawnioInstalled()) {
+      fs.copyFileSync(PI_LIB_PF, PI_LIB_APP);
+      send('正在重新读取温度…');
+      return { ok: true, already };
+    }
+    return { ok: false, error: '等待超时：未检测到已安装的 PawnIO。' };
+  } catch (e) {
+    logErr('pawnio', e);
+    return { ok: false, error: '未能完成 PawnIO 配置，请检查安装是否取消以及运行日志。' };
+  } finally {
+    pawnioInstalling = false;
+  }
+});
+
 /* ---------------- 窗口 ---------------- */
 let win;
 
@@ -1495,16 +1593,52 @@ function createWindow() {
 
 // 提权实例带 --elevated：不抢单实例锁，否则会被正在退出的旧实例挡掉后自杀
 const ELEVATED = process.argv.includes('--elevated');
-const gotLock = ELEVATED ? true : app.requestSingleInstanceLock();
-if (ELEVATED) {
+
+// 用户右键「以管理员身份运行」时不会带 --elevated，必须自己判断真实权限
+let IS_ELEVATED = ELEVATED;
+if (!IS_ELEVATED) {
+  try {
+    const r = require('child_process').spawnSync('whoami', ['/groups'], { windowsHide: true, encoding: 'utf8', timeout: 4000 });
+    IS_ELEVATED = /S-1-16-12288/.test(String((r && r.stdout) || ''));
+  } catch (e) { IS_ELEVATED = false; }
+}
+
+// 提权实例不抢单实例锁，否则会被托盘里的旧实例挡掉（这正是"右键管理员启动没反应"的原因）
+const gotLock = IS_ELEVATED ? true : app.requestSingleInstanceLock();
+
+if (IS_ELEVATED) {
   // 握手：非提权实例靠这个文件确认新进程确实起来了
   try { fs.writeFileSync(path.join(USER_DIR, 'last-elevated.txt'), String(Date.now())); } catch {}
+  // 让还在托盘里的非提权旧实例主动退出，避免出现两个窗口、两份状态
+  try { fs.writeFileSync(TAKEOVER_FILE, String(Date.now())); } catch {}
 }
 if (!gotLock) app.quit();
 else {
   app.on('second-instance', () => { if (win) { win.show(); win.focus(); } });
+
+  // 有新进程以管理员身份启动 → 自己（普通权限）让位
+  function watchTakeover() {
+    setInterval(() => {
+      if (IS_ELEVATED) return;
+      try {
+        if (!fs.existsSync(TAKEOVER_FILE)) return;
+        const ts = Number(fs.readFileSync(TAKEOVER_FILE, 'utf8')) || 0;
+        if (Date.now() - ts > 15000) return;      // 过期标记忽略
+        isQuitting = true;
+        stopGpuWatcher();
+        app.quit();
+      } catch (e) { /* ignore */ }
+    }, 600);
+  }
+  watchTakeover();
+
+  function clearTakeover() {
+    if (!IS_ELEVATED) return;
+    setTimeout(() => { try { fs.unlinkSync(TAKEOVER_FILE); } catch (e) {} }, 2500);
+  }
   app.whenReady().then(() => {
 
+    clearTakeover();
     createWindow();
 
     app.on('activate', () => { if (BrowserWindow.getAllWindows().length === 0) createWindow(); });

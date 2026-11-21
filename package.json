@@ -1,7 +1,7 @@
 {
   "name": "tuba-toolbox-next",
   "productName": "WinToolbox",
-  "version": "0.16.0",
+  "version": "0.16.3",
   "description": "Windows 桌面工具台：硬件监控、工具库和系统调优",
   "main": "main.js",
   "license": "MIT",

@@ -3,11 +3,11 @@
 **一个界面，管住你的整台 Windows。**
 图吧工具箱的工具库 + 你自己收藏的小众程序 + 系统里藏得深的开关，全部收进一个可搜索、可收藏、可一键启动的面板。
 
-`v0.16.3` 本地版本 · Windows 10/11 x64 · 简体中文 / English
+`v0.16.3` · 免安装版 · Windows 10/11 x64 · 简体中文 / English
 
-[下载 GitHub 免安装版 v0.16.0](https://github.com/Shmi11y/WinToolbox/releases/tag/v0.16.0)
+[下载 GitHub 免安装版](https://github.com/Shmi11y/WinToolbox/releases/latest)
 
-> 下文按本地 v0.16.3 说明，部分界面截图采自 v0.16.2。GitHub 当前提供 v0.16.0，PawnIO 安装入口属于本地新版。
+> 下文按 v0.16.3 说明，部分界面截图采自 v0.16.2。
 
 ---
 
@@ -281,23 +281,25 @@
 
 **结论先说：不一定是权限问题。**
 
-CPU 温度必须靠内核驱动直接读 MSR 寄存器，Windows 有两道关会拦：
+部分 CPU 温度需要额外的传感器库和驱动，能否读取也取决于硬件和权限：
 
 | 现象 | 原因 | 怎么办 |
 |---|---|---|
 | 提示"需要以管理员身份启动" | 权限不够 | 点「以管理员重启」 |
-| 管理员了还是空 | **内存完整性（内核隔离）开着** | 装 PawnIO（见下） |
-| 装了 PawnIO 还是空 | 主板没暴露传感器 | 硬件限制，无解 |
+| 管理员了还是空 | 缺少兼容的传感器库，或内存完整性限制旧驱动 | 配置 LibreHardwareMonitor，根据提示尝试使用 PawnIO |
+| 装了 PawnIO 还是空 | 传感器或依赖与当前硬件不兼容 | 查看运行日志，核对传感器库与依赖 |
 
-### 装 PawnIO（本地新版）
+### 配置增强温度读取
 
-检测到内核隔离开启时，温度提示条里会出现这个按钮：
+先从 [LibreHardwareMonitor 上游](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/releases)获取与 Windows PowerShell 5.1 兼容的 .NET Framework 版 `LibreHardwareMonitorLib.dll` 及同版依赖。在 WinToolbox 设置页打开数据目录，把这些 DLL 放进 `sensors` 子目录，再以管理员身份启动 WinToolbox。
+
+检测到内存完整性开启且 CPU 温度不可用时，温度提示条会给出 PawnIO 安装入口：
 
 ```
 [安装温度驱动（PawnIO）]
 ```
 
-点击后程序会自动完成前半段：下载官方安装包 → **校验 Authenticode 签名（必须是 namazso.eu）** → 提权运行安装器。
+点击后程序从官方 GitHub 下载 PawnIO 2.2.0，核对 SHA-256 和 `namazso.eu` 的 Authenticode 签名，再请求以管理员身份启动安装器。
 
 然后会弹出 PawnIO 自己的安装窗口，只有两步：
 
@@ -306,13 +308,11 @@ CPU 温度必须靠内核驱动直接读 MSR 寄存器，Windows 有两道关会
 1. 点**图中红框里的那个按钮**（屏幕 + 向下箭头，就是「安装到本机」）
 2. 弹出确认框点 **「继续 / Continue」**
 
-装完不用管，程序会在 2 秒内检测到 `C:\Program Files\PawnIO`，自动把 `PawnIOLib.dll` 接入并重扫温度。整个过程不需要重启。
+安装完成后，WinToolbox 会检测 PawnIO，接入 `PawnIOLib.dll` 并重新读取温度。如安装器提示重启，请按提示操作。
 
 > 右边的齿轮只是 PawnIO 自己的设置项，一般不用动。
 
-PawnIO 是微软认可的签名内核驱动，能与内存完整性共存，不需要关掉任何安全防护。
-
-> GitHub 上的 v0.16.0 可选用 [LibreHardwareMonitor](https://github.com/LibreHardwareMonitor/LibreHardwareMonitor/releases)。将与 Windows PowerShell 5.1 兼容的 DLL 及同版依赖放进应用数据目录下的 `sensors` 子目录，再以管理员权限启动 WinToolbox。可读项目取决于硬件与权限。
+PawnIO 提供官方签名版本，可尝试在保留内存完整性的情况下读取兼容的传感器。温度功能可选，工具库和调优功能照常使用。
 
 ---
 
@@ -388,7 +388,7 @@ PawnIO 是微软认可的签名内核驱动，能与内存完整性共存，不�
 首次采集硬件信息要 3–6 秒（跑 WMI 和传感器）。之后有 6 小时缓存，秒开。
 
 **Q：软件有多大？**
-本地 v0.16.3 的压缩包约 105 MiB。GitHub v0.16.0 的下载包约 151 MiB，主要是 Electron 运行时，实际大小见 Release 页面。
+下载包体积主要来自 Electron 运行时，实际大小见 Release 页面。
 
 ---
 

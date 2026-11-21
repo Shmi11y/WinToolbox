@@ -34,6 +34,7 @@ async function build() {
     for (const file of ['LICENSE', 'LICENSE.YuqiEngine.txt', 'THIRD-PARTY-NOTICES.md', 'README.md']) {
       await fs.copyFile(path.join(root, file), path.join(portable, file));
     }
+    await fs.cp(path.join(root, 'docs', 'screenshots'), path.join(portable, 'docs', 'screenshots'), { recursive: true });
     await fs.copyFile(path.join(root, 'config.example.json'), path.join(portable, 'resources', 'config.json'));
 
     const executable = path.join(portable, 'WinToolbox.exe');

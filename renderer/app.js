@@ -1074,6 +1074,7 @@ function renderSys() {
     </div>`;
 
   $('#btn-rescan').onclick = () => { S.info = null; renderSys(); loadInfo(true); };
+  bindPawnioBtn();
   const ba = $('#btn-admin');
   if (ba) ba.onclick = () => requestAdmin(ba);
   if (!S.info) loadInfo();
@@ -1276,9 +1277,13 @@ function tempNote() {
   const t = S.info.temps;
   const missing = [t.cpu, t.gpu].filter(v => v == null).length;
   if (!missing) return '';
-  const il8nEn = !!(window.I18N && window.I18N.lang === 'en');
+
+  const en = !!(window.I18N && window.I18N.lang === 'en');
+  const ci = S.info.coreIsolation;
+
+  // 1) 非管理员：确实是权限问题
   if (!S.admin) {
-    if (il8nEn) {
+    if (en) {
       return `<div class="temp-note">
         <b>${missing} sensor(s) unavailable:</b> CPU temperature requires <b>running as administrator</b>.
         Click "Restart as Admin" at the top right; if nothing happens, right-click WinToolbox.exe → "Run as administrator".
@@ -1287,6 +1292,36 @@ function tempNote() {
     return `<div class="temp-note">
       <b>有 ${missing} 项温度读不到：</b>处理器温度需要<b>以管理员身份启动</b>才能读取，
       点右上角「以管理员重启」；如果没反应，直接右键 WinToolbox.exe → 「以管理员身份运行」。
+    </div>`;
+  }
+
+  if (!S.info.sensorLib && t.cpu == null) {
+    return en
+      ? '<div class="temp-note">For enhanced CPU readings, set up LibreHardwareMonitor as described in the README, then rescan.</div>'
+      : '<div class="temp-note">如需增强 CPU 温度读数，请按 README 配置 LibreHardwareMonitor，再重新扫描。</div>';
+  }
+
+  if (ci === true && t.cpu == null) {
+    if (en) {
+      return `<div class="temp-note">
+        <b>Memory integrity is on.</b> PawnIO can help compatible CPU sensors work with this setting enabled.
+        <div class="temp-fix"><button class="btn sm primary" data-pawnio>Set up PawnIO</button></div>
+      </div>`;
+    }
+    return `<div class="temp-note">
+      <b>内存完整性已开启。</b>可尝试用 PawnIO 读取兼容的 CPU 温度传感器。
+      <div class="temp-fix">
+        <button class="btn sm primary" data-pawnio>安装温度驱动（PawnIO）</button>
+        <span class="temp-fix-hint">下载官方签名安装器，实际读数取决于硬件与传感器支持</span>
+      </div>
+    </div>`;
+  }
+
+  // 3) 管理员、驱动没被拦，仍缺数据：主板未暴露传感器
+  if (en) {
+    return `<div class="temp-note">
+      This motherboard does not expose a CPU temperature sensor through the standard interface;
+      it stays unavailable even as administrator.
     </div>`;
   }
   return `<div class="temp-note">
@@ -1857,6 +1892,35 @@ function updateFab() {
   document.body.classList.toggle('has-fab', show);
 }
 
+function bindPawnioBtn() {
+  document.querySelectorAll('[data-pawnio]').forEach(b => {
+    b.onclick = async () => {
+      if (b.dataset.busy === '1') return;
+      b.dataset.busy = '1';
+      b.disabled = true;
+      const label = b.textContent;
+      b.textContent = '准备中…';
+      window.__pawnioBtn = { el: b, label };
+      let r;
+      try { r = await api.pawnioInstall(); }
+      catch (e) { r = { ok: false, error: (e && e.message) || '调用失败' }; }
+      window.__pawnioBtn = null;
+      b.dataset.busy = '';
+      if (!r || !r.ok) {
+        b.disabled = false;
+        b.textContent = '重试安装';
+        toast((r && r.error) || '安装失败', true);
+        return;
+      }
+      b.textContent = '正在重新读取温度…';
+      S.info = null;
+      await loadInfo(true);
+      if (S.view.type === 'sys') renderSys();
+      toast('温度驱动已就绪');
+    };
+  });
+}
+
 function renderSearch(el) {
   const q = S.q.toLowerCase();
   const list = S.tools.filter(t =>
@@ -1976,6 +2040,11 @@ const fab = document.getElementById('fab-add');
 if (fab) fab.onclick = () => addFlow();
 const fabBtn = document.getElementById('fab-add');
 if (fabBtn) fabBtn.onclick = () => addFlow();
+try {
+  api.onPawnioProgress((msg) => {
+    if (window.__pawnioBtn && window.__pawnioBtn.el) window.__pawnioBtn.el.textContent = msg;
+  });
+} catch (e) {}
 api.onCloseAsk(() => openCloseAsk());
 bindDrop();
 

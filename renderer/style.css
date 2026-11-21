@@ -980,3 +980,7 @@ body[data-theme="dark"] .fab { background: var(--text); color: var(--bg); }
 
 /* 有悬浮按钮时给内容留出底部空间，避免遮住最后一行卡片 */
 body.has-fab #content { padding-bottom: 62px; }
+
+/* 温度提示里的安装按钮 */
+.temp-fix { display: flex; align-items: center; gap: 10px; margin-top: 9px; flex-wrap: wrap; }
+.temp-fix-hint { font-size: 10.5px; color: var(--dim); }
